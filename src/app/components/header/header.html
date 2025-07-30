@@ -1,1 +1,36 @@
-<div></div>
+<div class="header">
+    <div class="left">
+        <div class="header_img">
+            <img src="/imgs/alessio_header_photo.jpg" alt="">
+        </div>
+        <span>ALESSIO FISCHETTI</span>
+    </div>
+    <div class="right no_hamburger" *ngIf="!isMobileView">
+        <div class="section_holder row align-items-center">
+            <div class="col-6 col-sm-4">
+                <button class="custom_btn">
+                    <span>HOME</span>
+                </button>
+            </div>
+            <div class="col-6 col-sm-4">
+                <button class="custom_btn"><span>ABOUT</span></button>
+            </div>
+            <div class="col-6 col-sm-4">
+                <button class="custom_btn"><span>COMPETENZE</span></button>
+            </div>
+        </div>
+    </div>
+    <div class="right hamburger" *ngIf="isMobileView">
+        <hamburger-component (menuToggle)="handleMenuToggle($event)"></hamburger-component>
+        <ul *ngIf="isMenuOpen">
+            <li>
+                <a>HOME</a>
+            </li>
+            <li><a>ABOUT</a>
+            </li>
+            <li>
+                <a>COMPETENZE</a>
+            </li>
+        </ul>
+    </div>
+</div>
