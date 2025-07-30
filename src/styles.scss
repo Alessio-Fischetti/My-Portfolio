@@ -1,3 +1,5 @@
+@import 'app/styles/variables';
+
 /* FONT GENERICI */
 * {
     font-family: 'JetBrains Mono', monospace;
@@ -7,4 +9,6 @@ html,
 body {
     height: 100vh;
     margin: 0;
+    background-color: $surface-color;
+    color: $text-primary;
 }
