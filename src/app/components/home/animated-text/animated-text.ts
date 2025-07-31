@@ -15,7 +15,7 @@ export class AnimatedText {
       strings: ['Ciao, piacere di conoscerti!', 'Benvenuto nel mio portfolio!', 'Sono Alessio Fischetti', 'Developer di Siti e Applicazioni Web'],
       typeSpeed: 50,
       backSpeed: 25,
-      loop: true
+      loop: false
     };
 
     new Typed(this.typedElement.nativeElement, options);

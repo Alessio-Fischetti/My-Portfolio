@@ -22,9 +22,4 @@ export class Particles implements AfterViewInit {
   ngAfterViewInit(): void {
     particlesJS('particles-js', particlesConfig);
   }
-  /* particlesJS.load('particles-js', '/assets/particles.json', function() {
-  console.log('callback - particles.js config loaded');
-}); */
-  // Oppure inizializza manualmente con la config importata
-  /*  particlesJS('particles-js', particlesConfig); */
 }
