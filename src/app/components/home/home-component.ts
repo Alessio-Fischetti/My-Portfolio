@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component} from '@angular/core';
 import { Header } from "../header/header";
 import { Particles } from "./particles/particles";
 import { AnimatedText } from './animated-text/animated-text';
