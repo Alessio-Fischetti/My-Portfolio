@@ -12,7 +12,7 @@ export class AnimatedText {
 
   ngAfterViewInit(): void {
     const options = {
-      strings: ['Ciao, piacere di conoscerti!', 'Benvenuto nel mio portfolio!', 'Sono Alessio Fischetti', 'Frontend Developer di Siti e Applicazioni Web'],
+      strings: ['Ciao, piacere di conoscerti!', 'Benvenuto nel mio portfolio!', 'Sono Alessio Fischetti', 'Developer di Siti e Applicazioni Web'],
       typeSpeed: 50,
       backSpeed: 25,
       loop: true
