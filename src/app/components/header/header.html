@@ -8,7 +8,7 @@
     <div class="right no_hamburger" *ngIf="!isMobileView">
         <div class="section_holder row align-items-center">
             <div class="col-6 col-sm-4">
-                <button class="custom_btn">
+                <button class="custom_btn" (click)="scrollToHome()">
                     <span>HOME</span>
                 </button>
             </div>
@@ -21,9 +21,9 @@
         </div>
     </div>
     <div class="right hamburger" *ngIf="isMobileView">
-        <hamburger-component (menuToggle)="handleMenuToggle($event)"></hamburger-component>
+        <hamburger-component (menuToggle)="handleMenuToggle($event)" [usedLink]="closeMenu"></hamburger-component>
         <ul *ngIf="isMenuOpen">
-            <li>
+            <li (click)="scrollToHomeMobile()">
                 <a>HOME</a>
             </li>
             <li><a>ABOUT</a>
