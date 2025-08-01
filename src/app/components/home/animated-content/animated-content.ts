@@ -2,12 +2,12 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 import Typed from 'typed.js';
 
 @Component({
-  selector: 'animated-text-component',
+  selector: 'animated-content-component',
   imports: [],
-  templateUrl: './animated-text.html',
-  styleUrl: './animated-text.scss'
+  templateUrl: './animated-content.html',
+  styleUrl: './animated-content.scss'
 })
-export class AnimatedText {
+export class AnimatedContent {
   @ViewChild('typedElement', { static: true }) typedElement!: ElementRef;
 
   ngAfterViewInit(): void {
