@@ -62,32 +62,76 @@
      }
  }
 
- .links {
+
+ .bottom_animations {
      position: relative;
      height: 10%;
-     margin-right: 20px;
      display: flex;
-     justify-content: flex-end;
-     align-items: center;
-     gap: 2rem;
+     justify-content: space-between;
      z-index: 2;
 
-     .github,
-     .linkedin {
-         cursor: pointer;
-         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-         transition: box-shadow 0.3s ease, transform 0.3s ease;
+     .scroll_container {
+        width: calc(50% + 20px);
+        display: flex;
+        justify-content: flex-end;
+         .scroll_body {
+             width: 25px;
+             height: 45px;
+             display: flex;
+             justify-content: center;
+             border: $border-color solid 2px;
+             border-radius: 35%;
 
-         &:active {
-             transform: translateY(0);
-             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+             .scroll_dot {
+                 width: 6px;
+                 height: 6px;
+                 border-radius: 100%;
+                 background: $accent-color;
+                 margin: 5px;
+                 animation: scrolldot 2s infinite;
+             }
+         }
+     }
+
+     /* Animazione di scroll */
+     @keyframes scrolldot {
+         from {
+             align-self: flex-start;
+             opacity: 1;
          }
 
-         &:hover {
-             color: $accent-hover;
+         to {
+             transform: translateY(23px);
+             opacity: 0;
+         }
+     }
+
+     .links {
+        width: 50%;
+         margin-right: 20px;
+         display: flex;
+         justify-content: flex-end;
+         align-items: center;
+         gap: 2rem;
+
+
+         .github,
+         .linkedin {
              cursor: pointer;
-             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
-             transform: translateY(-2px);
+             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+             transition: box-shadow 0.3s ease, transform 0.3s ease;
+
+             &:active {
+                 transform: translateY(0);
+                 box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+             }
+
+             &:hover {
+                 color: $accent-hover;
+                 cursor: pointer;
+                 box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+                 transform: translateY(-2px);
+             }
          }
      }
  }
