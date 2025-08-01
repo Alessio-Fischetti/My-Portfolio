@@ -80,14 +80,14 @@
              height: 45px;
              display: flex;
              justify-content: center;
-             border: $border-color solid 2px;
+             border: variables.$border-color solid 2px;
              border-radius: 35%;
 
              .scroll_dot {
                  width: 6px;
                  height: 6px;
                  border-radius: 100%;
-                 background: $accent-color;
+                 background: variables.$accent-color;
                  margin: 5px;
                  animation: scrolldot 2s infinite;
              }
@@ -129,7 +129,7 @@
              }
 
              &:hover {
-                 color: $accent-hover;
+                 color: variables.$accent-hover;
                  cursor: pointer;
                  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
                  transform: translateY(-2px);

@@ -1,4 +1,4 @@
-@use "../../../styles/variables";
+@use "/styles/variables";
 
 .hamb {
     position: relative;
@@ -50,7 +50,7 @@
 
 .hamb .line {
     fill: none;
-    stroke: $text-primary;
+    stroke: variables.$text-primary;
     stroke-width: 5;
     transition-duration: .3s;
     stroke-linecap: round;

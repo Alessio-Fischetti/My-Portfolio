@@ -9,6 +9,6 @@ html,
 body {
     height: 100vh;
     margin: 0;
-    background-color: $surface-color;
-    color: $text-primary;
+    background-color: variables.$surface-color;
+    color: variables.$text-primary;
 }
