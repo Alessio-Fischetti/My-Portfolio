@@ -3,10 +3,10 @@ name: Deploy Angular to GitHub Pages
 on:
   push:
     branches:
-      - main  # o il tuo branch principale
+      - main  # or your default branch
 
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
@@ -22,9 +22,6 @@ jobs:
 
     - name: Build Angular project
       run: npm run build -- --configuration production --output-path=dist/my-portfolio --base-href=/My-Portfolio/
-
-
-
 
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
