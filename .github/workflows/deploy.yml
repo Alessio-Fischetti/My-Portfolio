@@ -21,7 +21,8 @@ jobs:
       run: npm install
 
     - name: Build Angular project
-      run: npm run build -- --configuration production --output-path=dist/my-portfolio
+      run: npm run build -- --configuration production --output-path=dist/my-portfolio --base-href=/My-Portfolio/
+
 
 
     - name: Deploy to GitHub Pages
