@@ -1,32 +1,39 @@
 <div class="
     shadow-2xl
     text-black
-    bg-[#B5D8FF]
-    border-x-5 border-[#B5D8FF]
-    border-b-2
     backdrop-blur-lg
     w-[25%]
     h-[45%]
     fixed
     rounded-lg
+    window_modal_header_color
   " cdkDrag>
 
-    <div class="p-2 flex justify-between rounded-t-lg font-semibold w-full h-9" cdkDragHandle>
-        <div class="flex items-center gap-2">
-            <img src="assets/icons/cmd.webp" alt="cmd" class="w-6 h-6">
+    <div class="flex justify-between rounded-t-lg font-semibold w-full h-9" cdkDragHandle>
+        <div class="flex items-center gap-2 p-t-1 p-2 p-b-1">
+            <img src="{{app?.image}}" alt="cmd" class="w-6 h-6">
             <span class="text-sm [text-shadow:2px_2px_6px_white,0_0_10px_white]">
-                Prompt di comando
+                {{app?.name}}
             </span>
         </div>
-        <div class="flex gap-1">
-            <div>_</div>
-            <div>2nd</div>
-            <div>X</div>
+        <div
+            class="flex self-start justify-self-end w-fit mr-2 shadow-2xl shadow-white rounded-b-[4px] windows_modal_header_keys ">
+            <button class="relative z-10 flex items-center justify-center w-10 h-6 p-0
+           rounded-b-lg">
+                <div class="w-[13px] h-[5px] bg-white border-[#404a5496] border-1 mt-1 shadow-2xl"></div>
+            </button>
+            <button class="relative z-10 flex items-center justify-center w-9 h-6 p-0">
+                square
+            </button>
+            <button class="relative z-10 flex items-center justify-center w-11 h-6 p-0
+           bg-gray-200 hover:shadow- windows_modal_header_close">
+                x
+            </button>
         </div>
     </div>
 
 
-    <div class="w-full h-full ">
+    <div class="w-full h-full p-[4px]">
         <div class="w-full h-[calc(100%-2.5rem)] bg-black"></div>
     </div>
 </div>

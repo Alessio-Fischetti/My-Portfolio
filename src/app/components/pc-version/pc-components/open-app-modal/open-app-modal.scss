@@ -1,0 +1,35 @@
+.window_modal_header_color {
+    background:
+        linear-gradient(rgba(255, 255, 255, 0) 30px, rgba(255, 255, 255, 0.7019607843) 40%, rgba(255, 255, 255, 0) 41%),
+        linear-gradient(135deg, rgba(255, 255, 255, 0.3333333333) 70px, rgba(255, 255, 255, 0) 100px),
+        linear-gradient(225deg, rgba(255, 255, 255, 0.3333333333) 70px, rgba(255, 255, 255, 0) 100px),
+        #B5D8FF;
+    border-image: linear-gradient(rgba(255, 255, 255, 0) 30px, rgba(255, 255, 255, 0.7019607843) 40%, rgba(255, 255, 255, 0) 41%),
+        linear-gradient(135deg, rgba(255, 255, 255, 0.3333333333) 70px, rgba(255, 255, 255, 0) 100px),
+        linear-gradient(225deg, rgba(255, 255, 255, 0.3333333333) 70px, rgba(255, 255, 255, 0) 100px),
+        #B5D8FF;
+    ;
+}
+
+/* Bottoni modale */
+.windows_modal_header_keys {
+    background-image: linear-gradient(rgba(244, 244, 244, 0.5725490196), rgba(211, 211, 211, 0.4549019608) 45%, rgba(0, 0, 0, 0.1803921569) 50%, rgba(143, 150, 173, 0.3058823529));
+    border-color: rgba(0, 0, 0, .6666666667);
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .6666666667)
+}
+
+/* Bottone chiusura */
+.windows_modal_header_close {
+    background-image: linear-gradient(rgba(244, 244, 244, 0.5725490196), rgba(211, 211, 211, 0.4549019608) 45%, rgba(0, 0, 0, 0.1803921569) 50%, rgba(143, 150, 173, 0.3058823529)), radial-gradient(circle at -60% 50%, rgba(0, 0, 0, 0.3333333333) 5% 10%, rgba(0, 0, 0, 0) 50%), radial-gradient(circle at 160% 50%, rgba(0, 0, 0, 0.3333333333) 5% 10%, rgba(0, 0, 0, 0) 50%);
+    background-color: #d54f36;
+}
+
+.windows_modal_header_close:hover {
+    background: radial-gradient(circle at 50% 170%, #f4e676 10% 20%, rgba(0, 0, 0, 0) 60%), radial-gradient(circle at -60% 50%, rgba(0, 0, 0, 0.4666666667) 5% 10%, rgba(0, 0, 0, 0) 50%), radial-gradient(circle at 160% 50%, rgba(0, 0, 0, 0.4666666667) 5% 10%, rgba(0, 0, 0, 0) 50%), linear-gradient(#fb9d8b, #ee6d56 25% 50%, #d42809 50%);
+    box-shadow: 0 0 7px 3px #e68e75, inset 0 0 0 1px rgba(255, 255, 255, .4666666667);
+}
+
+.windows_modal_header_close:focus {
+    background: radial-gradient(circle at 50% 170%, #dcc03f 10% 20%, rgba(0, 0, 0, 0) 60%), radial-gradient(circle at -60% 50%, rgba(0, 0, 0, 0.6666666667) 5% 10%, rgba(0, 0, 0, 0) 50%), radial-gradient(circle at 160% 50%, rgba(0, 0, 0, 0.6666666667) 5% 10%, rgba(0, 0, 0, 0) 50%), linear-gradient(#d1a894, #b67562 25% 50%, #7d0d01 50%);
+    box-shadow: 0 0 7px 3px #e68e75, inset 0 0 0 1px rgba(255, 255, 255, .4666666667);
+}

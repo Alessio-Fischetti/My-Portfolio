@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { WindowsBar } from './pc-components/windows-bar/windows-bar';
 import { CommonModule } from '@angular/common';
 import { OpenAppModal } from "./pc-components/open-app-modal/open-app-modal";
+import AppModalInterface from '../interfaces/modal-interface';
 
 @Component({
   selector: 'app-pc-version',
@@ -18,6 +19,11 @@ export class PcVersion {
     file_explorer: { isOpen: false, isSelected: false, howMany: 0, onBackground: false },
     cmd: { isOpen: true, isSelected: true, howMany: 2, onBackground: true },
   }
+  app: AppModalInterface = {
+    name: "Prompt di comando",
+    image: "assets/icons/cmd.webp"
+  }
+
 
   /* Gestione finestra aperta */
   selectWindow(appKey: string) {

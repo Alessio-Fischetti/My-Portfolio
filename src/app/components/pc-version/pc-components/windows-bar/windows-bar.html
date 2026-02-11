@@ -1,5 +1,5 @@
 <div class="w-full h-12 flex items-center px-2 gap-3
-            bg-[#a8c0da]
+            window_bar
            shadow-[inset_0_1px_0_rgba(255,255,255,0.15),inset_0_-1px_0_rgba(0,0,0,0.6),0_-1px_6px_rgba(0,0,0,0.8)]
            opacity-95
            ">
@@ -23,7 +23,8 @@
         <img src="assets/icons/File_Explorer.svg" class="w-7 h-7">
 
         <!-- Open indicator -->
-            <div *ngIf="windowsApps.file_explorer.onBackground || windowsApps.file_explorer.isOpen " class="absolute bottom-1 w-6 h-[2px] bg-[#7fbfff] rounded"></div>
+        <div *ngIf="windowsApps.file_explorer.onBackground || windowsApps.file_explorer.isOpen "
+            class="absolute bottom-1 w-6 h-[2px] bg-[#7fbfff] rounded"></div>
     </div>
 
 
@@ -39,7 +40,8 @@
         <img src="assets/icons/cmd.webp" class="w-7 h-7">
 
         <!-- Open indicator -->
-        <div *ngIf="windowsApps.cmd.onBackground || windowsApps.cmd.isOpen" class="absolute bottom-1 w-6 h-[2px] bg-[#7fbfff] rounded"></div>
+        <div *ngIf="windowsApps.cmd.onBackground || windowsApps.cmd.isOpen"
+            class="absolute bottom-1 w-6 h-[2px] bg-[#7fbfff] rounded"></div>
     </div>
 
 
