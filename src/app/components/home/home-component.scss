@@ -1,4 +1,4 @@
-@use "../../styles/variables";
+
 
 .main {
     padding-top: 90px;
@@ -16,4 +16,42 @@
         height: 100%;
         padding: 10px;
     }
+}
+
+.splash {
+  position: fixed;
+  inset: 0;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.brush {
+  position: absolute;
+  width: 320px;
+  height: 160px;
+  background: black;
+  clip-path: polygon(0 40%, 100% 30%, 100% 70%, 0 60%);
+  transform: scaleX(0);
+  transform-origin: left;
+  animation: wipe 0.7s cubic-bezier(.6,.1,.2,1) forwards;
+}
+
+.logo {
+  font-size: 26px;
+  font-weight: bold;
+  color: white;
+  opacity: 0;
+  animation: logoIn 0.3s ease-out forwards;
+  animation-delay: 0.5s;
+}
+
+@keyframes wipe {
+  to { transform: scaleX(1); }
+}
+
+@keyframes logoIn {
+  to { opacity: 1; }
 }

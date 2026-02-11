@@ -9,4 +9,5 @@ import { Home } from "./components/home/home-component";
 })
 export class App {
   protected readonly title = signal('my-portfolio');
+  
 }

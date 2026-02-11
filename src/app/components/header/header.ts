@@ -1,11 +1,10 @@
 import { Component, HostListener, OnInit } from '@angular/core';
-import { Hamburger } from "./hamburger/hamburger";
 import { CommonModule } from '@angular/common';
 import { Subject } from 'rxjs';
 
 @Component({
   selector: 'header-component',
-  imports: [Hamburger, CommonModule],
+  imports: [CommonModule],
   templateUrl: './header.html',
   styleUrl: './header.scss'
 })

@@ -1,0 +1,89 @@
+<div class="w-full h-12 flex items-center px-2 gap-3
+            bg-[#a8c0da]
+           shadow-[inset_0_1px_0_rgba(255,255,255,0.15),inset_0_-1px_0_rgba(0,0,0,0.6),0_-1px_6px_rgba(0,0,0,0.8)]
+           opacity-95
+           ">
+    <!-- Start -->
+    <div class="w-10 h-10 flex items-center justify-center rounded-full
+               hover:brightness-150 transition">
+        <img src="assets/icons/Start.svg" alt="" class="w-30 h-30">
+    </div>
+
+    <!-- Separator -->
+    <div class="w-px h-8 bg-[#555] mx-1 opacity-45"></div>
+
+    <!-- File Explorer -->
+    <div class="relative w-10 h-10 flex items-center justify-center rounded
+         hover:bg-[rgba(255,255,255,0.1)]
+         hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.4),0_0_6px_rgba(255,255,255,0.25)]
+         transition-all duration-150" [ngClass]="{
+    'bg-[rgba(255,255,255,0.12)] shadow-[inset_0_1px_0_rgba(255,255,255,0.4),0_0_6px_rgba(255,255,255,0.25)]':
+      windowsApps.file_explorer.isSelected
+  }" (click)="selectWindow('file_explorer')">
+        <img src="assets/icons/File_Explorer.svg" class="w-7 h-7">
+
+        <!-- Open indicator -->
+            <div *ngIf="windowsApps.file_explorer.onBackground || windowsApps.file_explorer.isOpen " class="absolute bottom-1 w-6 h-[2px] bg-[#7fbfff] rounded"></div>
+    </div>
+
+
+    <!-- CMD -->
+    <div class="relative w-10 h-10 flex items-center justify-center rounded
+         transition-all duration-150
+         hover:shadow-[inset_0_1px_0_#ffffff66,0_0_6px_#ffffff66]" [ngClass]="{
+    'bg-[#ffffff26] hover:bg-[#ffffff33] shadow-[inset_0_1px_0_#ffffff66,0_0_6px_#ffffff66]':
+      windowsApps.cmd.isSelected,
+    'hover:bg-[#ffffff1a]':
+      !windowsApps.cmd.isSelected
+  }" (click)="selectWindow('cmd')">
+        <img src="assets/icons/cmd.webp" class="w-7 h-7">
+
+        <!-- Open indicator -->
+        <div *ngIf="windowsApps.cmd.onBackground || windowsApps.cmd.isOpen" class="absolute bottom-1 w-6 h-[2px] bg-[#7fbfff] rounded"></div>
+    </div>
+
+
+
+
+    <div class="h-100 ml-auto flex">
+
+        <!-- Links -->
+        <!-- Linkedin -->
+        <div class="h-100 ml-auto flex gap-3">
+            <div class="w-100 h-100 flex flex-col justify-center items-center p-0 task_item">
+                <img src="assets/icons/linkedin.svg" alt="linkedin" class="px-1 w-8 h-8">
+            </div>
+        </div>
+
+        <!-- GitHub -->
+        <div class="h-100 ml-auto flex gap-3">
+            <div class="w-100 h-100 flex flex-col justify-center items-center p-0 task_item">
+                <img src="assets/icons/github.svg" alt="linkedin" class="px-1 w-8 h-8">
+            </div>
+        </div>
+
+        <!-- Medium -->
+        <div class="h-100 ml-auto flex gap-3">
+            <div class="w-100 h-100 flex flex-col justify-center items-center p-0 task_item">
+                <img src="assets/icons/medium.svg" alt="linkedin" class="px-1 w-8 h-8">
+            </div>
+        </div>
+
+        <!-- Gmail -->
+        <div class="h-100 ml-auto flex gap-3">
+            <div class="w-100 h-100 flex flex-col justify-center items-center p-0 task_item">
+                <img src="assets/icons/gmail.svg" alt="linkedin" class="px-1 w-8 h-8">
+            </div>
+        </div>
+
+
+
+        <!-- Time -->
+        <div class="w-fit h-100 flex flex-col justify-center items-center p-0 task_item">
+            <span class="text-xs px-1">{{ currentHour | date:'HH:mm' }}</span>
+            <span class="text-xs px-1">{{ currentHour | date:'dd/MM/yyyy' }}</span>
+        </div>
+    </div>
+
+
+</div>

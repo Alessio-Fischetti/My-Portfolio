@@ -1,5 +1,11 @@
-<header-component></header-component>
+<!-- <header-component></header-component>
 <div class="main">
+  <div class="splash">
+    <div class="brush wipe"></div>
+    <div class="logo">LOGO</div>
+  </div>
+
+
   <div class="particle_container" id="home">
     <animated-content-component></animated-content-component>
     <particles-component></particles-component>
@@ -7,4 +13,6 @@
   <div class="main_content">
     home works
   </div>
-</div>
+</div> -->
+<app-pc-version  *ngIf="!isMobileView"></app-pc-version>
+<app-phone-version  *ngIf="isMobileView"></app-phone-version>
