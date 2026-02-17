@@ -1,39 +1,52 @@
-<div class="
-    shadow-2xl
-    text-black
-    backdrop-blur-lg
-    w-[25%]
-    h-[45%]
-    fixed
-    rounded-lg
-    window_modal_header_color
-  " cdkDrag>
-
-    <div class="flex justify-between rounded-t-lg font-semibold w-full h-9" cdkDragHandle>
+<div class="min-w-[20rem] min-h-[40%] shadow-2xl text-black backdrop-blur-lg fixed rounded-lg window_modal_header_color"
+    [ngStyle]="{
+    width: selectedApp?.xSize ?? '25%',
+    height: `calc(${selectedApp?.ySize ?? '40%'} - 3rem)`,
+    visibility: selectedApp?.isMinimized ? 'hidden' : 'visible',
+    pointerEvents: selectedApp?.isMinimized ? 'none' : 'auto',
+    zIndex: selectedApp?.zIndex
+  }" cdkDrag [cdkDragFreeDragPosition]="dragPosition" cdkDragBoundary=".drag-container"
+    (cdkDragEnded)="onDragEnded($event)">
+    <!-- Corpo modale -->
+    <div class="flex justify-between rounded-t-md font-semibold w-full h-9" cdkDragHandle>
         <div class="flex items-center gap-2 p-t-1 p-2 p-b-1">
-            <img src="{{app?.image}}" alt="cmd" class="w-6 h-6">
+            <img src="{{selectedApp?.appInfo?.image}}" alt="cmd" class="w-6 h-6">
             <span class="text-sm [text-shadow:2px_2px_6px_white,0_0_10px_white]">
-                {{app?.name}}
+                {{selectedApp?.appInfo?.name}}
             </span>
         </div>
         <div
-            class="flex self-start justify-self-end w-fit mr-2 shadow-2xl shadow-white rounded-b-[4px] windows_modal_header_keys ">
+            class="flex self-start justify-self-end w-fit mr-2 shadow-2xl shadow-white rounded-b-[4px] border-x-[0.800px] border-b-[0.800px] windows_modal_header_keys ">
+            <!-- Minimizza -->
             <button class="relative z-10 flex items-center justify-center w-10 h-6 p-0
-           rounded-b-lg">
+           rounded-b-lg border-r-[0.800px] windows_modal_header_actions " (click)="minimizeWindow()">
                 <div class="w-[13px] h-[5px] bg-white border-[#404a5496] border-1 mt-1 shadow-2xl"></div>
             </button>
-            <button class="relative z-10 flex items-center justify-center w-9 h-6 p-0">
-                square
+            <!-- ingrandisci -->
+            <button
+                class="relative z-10 flex items-center justify-center w-9 h-6 p-0 border-r-[0.800px] border-l-0 windows_modal_header_actions"
+                (click)="increaseSizeByMax()">
+                <svg class="border-[#404a5496] border-1 mt-1 shadow-2xl" width="15" height="11" viewBox="0 0 10 8"
+                    fill="none" stroke="white" stroke-width="3">
+                    <!-- <rect x="0.75" y="0.25" width="7.5" height="4.5" stroke="#535666" stroke-width="1.5"/> -->
+                    <rect x="0.5" y="0.5" width="9" height="8" />
+                    <rect x="1.7" y="1.8" width="6" height="4" stroke="#535666" stroke-width=".5" />
+                </svg>
             </button>
+            <!-- Chiudi -->
             <button class="relative z-10 flex items-center justify-center w-11 h-6 p-0
-           bg-gray-200 hover:shadow- windows_modal_header_close">
-                x
+           bg-gray-200 border-r rounded-b-lg windows_modal_header_close" (click)="closeModal()">
+                <span class="text-white">x</span>
             </button>
         </div>
     </div>
 
-
+    <!-- Componente dinamico -->
     <div class="w-full h-full p-[4px]">
-        <div class="w-full h-[calc(100%-2.5rem)] bg-black"></div>
+        <div class="w-full h-[calc(100%-2.5rem)] bg-[#fff] ">
+            @if (selectedApp) {
+            <ng-container *ngComponentOutlet="selectedApp.component ?? null"></ng-container>
+            }
+        </div>
     </div>
 </div>

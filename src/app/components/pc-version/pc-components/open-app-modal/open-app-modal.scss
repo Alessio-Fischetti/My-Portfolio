@@ -9,19 +9,43 @@
         linear-gradient(225deg, rgba(255, 255, 255, 0.3333333333) 70px, rgba(255, 255, 255, 0) 100px),
         #B5D8FF;
     ;
+    resize: both;
+    /* permette resize verticale e orizzontale */
+    overflow: hidden;
+    /* dimensione minima */
+    max-width: 100%;
+    /* dimensione massima */
+    max-height: calc(100% - 3rem);
+    /* dimensione massima */
 }
 
 /* Bottoni modale */
 .windows_modal_header_keys {
     background-image: linear-gradient(rgba(244, 244, 244, 0.5725490196), rgba(211, 211, 211, 0.4549019608) 45%, rgba(0, 0, 0, 0.1803921569) 50%, rgba(143, 150, 173, 0.3058823529));
     border-color: rgba(0, 0, 0, .6666666667);
-    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .6666666667)
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .6666666667);
+}
+
+/* Bottoni minimizza e chiudi */
+.windows_modal_header_actions {
+    cursor: default !important;
+}
+
+.windows_modal_header_actions:hover {
+    background: radial-gradient(circle at bottom, #0bfdfa, transparent 65%), linear-gradient(#b6d9ee 50%, #1a6ca1 50%);
+    box-shadow: 0 0 7px 3px #b6d9ee, inset 0 0 0 1px rgba(255, 255, 255, .4666666667);
+}
+
+.windows_modal_header_actions:focus {
+    background: radial-gradient(circle at bottom, #0bfdfa, transparent 65%), linear-gradient(#86a7bc 50%, #092747 50%);
+    box-shadow: 0 0 7px 3px #092747, inset 0 0 0 1px rgba(255, 255, 255, .4666666667);
 }
 
 /* Bottone chiusura */
 .windows_modal_header_close {
     background-image: linear-gradient(rgba(244, 244, 244, 0.5725490196), rgba(211, 211, 211, 0.4549019608) 45%, rgba(0, 0, 0, 0.1803921569) 50%, rgba(143, 150, 173, 0.3058823529)), radial-gradient(circle at -60% 50%, rgba(0, 0, 0, 0.3333333333) 5% 10%, rgba(0, 0, 0, 0) 50%), radial-gradient(circle at 160% 50%, rgba(0, 0, 0, 0.3333333333) 5% 10%, rgba(0, 0, 0, 0) 50%);
     background-color: #d54f36;
+    cursor: default !important;
 }
 
 .windows_modal_header_close:hover {

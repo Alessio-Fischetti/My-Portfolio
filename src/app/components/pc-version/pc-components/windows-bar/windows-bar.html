@@ -50,41 +50,43 @@
     <div class="h-100 ml-auto flex">
 
         <!-- Links -->
-        <!-- Linkedin -->
-        <div class="h-100 ml-auto flex gap-3">
-            <div class="w-100 h-100 flex flex-col justify-center items-center p-0 task_item">
-                <img src="assets/icons/linkedin.svg" alt="linkedin" class="px-1 w-8 h-8">
-            </div>
+        <!-- Freccia per vedere link Nascosti -->
+        @if (hiddenLinks.length > 0) {
+        <div class="w-8 h-8 flex items-center justify-center cursor-pointer hover:bg-white/10 rounded"
+            (click)="toggleHiddenLinks()">
+
+            <span class="text-white text-sm">▲</span>
         </div>
 
-        <!-- GitHub -->
-        <div class="h-100 ml-auto flex gap-3">
-            <div class="w-100 h-100 flex flex-col justify-center items-center p-0 task_item">
-                <img src="assets/icons/github.svg" alt="linkedin" class="px-1 w-8 h-8">
+        <!-- Pannello link nascosti -->
+        @if (showHiddenLinks) {
+        <div class="absolute bottom-14 right-0 
+                  bg-[#1f1f1f] p-3 rounded shadow-xl
+                  flex flex-col gap-3">
+
+            @for (links of hiddenLinks; track $index) {
+            <div class="w-10 h-10 flex justify-center items-center task_item">
+                <img [src]="links.linkImg" [alt]="links.linkName" class="w-8 h-8">
             </div>
+            }
+
         </div>
+        }
+        }
 
-        <!-- Medium -->
-        <div class="h-100 ml-auto flex gap-3">
-            <div class="w-100 h-100 flex flex-col justify-center items-center p-0 task_item">
-                <img src="assets/icons/medium.svg" alt="linkedin" class="px-1 w-8 h-8">
-            </div>
+        <!-- Link Visibili -->
+        @for (links of visibleLinks; track $index) {
+        <div class="w-10 h-10 flex justify-center items-center task_item">
+            <img [src]="links.linkImg" [alt]="links.linkName" class="w-8 h-8">
         </div>
-
-        <!-- Gmail -->
-        <div class="h-100 ml-auto flex gap-3">
-            <div class="w-100 h-100 flex flex-col justify-center items-center p-0 task_item">
-                <img src="assets/icons/gmail.svg" alt="linkedin" class="px-1 w-8 h-8">
-            </div>
-        </div>
-
-
+        }
 
         <!-- Time -->
         <div class="w-fit h-100 flex flex-col justify-center items-center p-0 task_item">
             <span class="text-xs px-1">{{ currentHour | date:'HH:mm' }}</span>
             <span class="text-xs px-1">{{ currentHour | date:'dd/MM/yyyy' }}</span>
         </div>
+
     </div>
 
 
