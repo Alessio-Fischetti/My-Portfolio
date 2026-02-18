@@ -35,12 +35,12 @@ export const WINDOWS_APPS_MOCK: WindowsApps = {
         howMany: 0,
         maximazed: false,
         onBackground: false,
-        dragPosition: { x: 0, y: 0 },
-        lastDragPosition: { x: 0, y: 0 },
-        xSize: '25%',
-        lastXSize: '25%',
-        ySize: '45%',
-        lastYSize: '45%',
+        dragPosition: { x: 50, y: 50 },
+        lastDragPosition: { x: 50, y: 50 },
+        xSize: '50%',
+        lastXSize: '50%',
+        ySize: '50%',
+        lastYSize: '50%',
         appInfo: { image: 'assets/icons/File_Explorer.svg', name: 'File Explorer' },
         component: FileExplorerContent
     },
@@ -63,3 +63,37 @@ export const WINDOWS_APPS_MOCK: WindowsApps = {
         component: CmdContent
     }
 };
+
+export const WINDOWS_APPS_CONTENT: Folder[] = [
+    {
+        folderName: "Desktop",
+        isFolderSelected: true,
+        folderContent: [
+            {
+                appName: 'About me.pdf',
+                appImg: '',
+                appService: ''
+            },
+            {
+                appName: 'Video',
+                appImg: '',
+                appService: ''
+            },
+            {
+                appName: 'Immagini.pdf',
+                appImg: '',
+                appService: ''
+            },
+        ]
+    },
+    {
+        folderName: "Video",
+        isFolderSelected: false,
+        folderContent: []
+    }
+]
+
+export const WINDOWS_APP_VIEWS: AppViews[] = [
+    { optName: 'Grandi Icone', isOptSeleted: false, img:"assets/icons/big_img_size.webp" },
+    { optName: 'Contenuto', isOptSeleted: true, img: 'assets/icons/img_size_list.webp'}
+];

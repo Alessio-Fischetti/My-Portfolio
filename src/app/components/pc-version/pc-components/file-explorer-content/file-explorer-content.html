@@ -1,21 +1,48 @@
 <div class="w-full h-full">
     <div class="w-full h-full flex flex-col">
-        <div class="w-full h-[2rem] border-y flex justify-between items-center file_exp_bar">
-            <span class="text-[0.75rem] ml-3 text-center">Desktop</span>
-            <div class="mr-3">
-                <button class="flex items-center px-2 py-[.25rem] file_exp_bar_button">
-                    <span class="text-[0.75rem]"><img src="assets/icons/img_size.webp" alt=""></span>
+        <div class="w-full h-[2rem] border-y-2 flex justify-between items-center file_exp_bar">
+            <span class="text-[0.75rem] ml-3 text-center">Organizza</span>
+            <div class="mr-3 relative">
+                <button class="flex items-center px-2 py-[.25rem] file_exp_bar_button"
+                    (click)="showSizeOpt = !showSizeOpt">
+                    <span class="text-[0.75rem]"><img src="assets/icons/big_img_size.webp" alt="Size"></span>
                 </button>
+                @if (showSizeOpt) {
+                <div class="absolute right-0 bg-[#f0f0f0] shadow-md  w-max flex flex-col">
+
+                    <!-- Lista delle viste -->
+                    <div class="flex flex-row items-center gap-2 p-1 border-1  border-[#00000050]">
+                        <!-- Lista delle opzioni -->
+                        <ul class="flex p-0 m-0 text-black whitespace-nowrap">
+                            <div class="p-1">
+                                @for (opt of listOfPossibleViews; track $index) {
+                                <li class="flex items-center p-1 gap-2 text-[.7rem] left_list_items"
+                                    (click)="selectView(opt.optName)">
+                                    <img [src]="opt.img" alt="">
+                                    <span>{{ opt.optName }}</span>
+                                </li>
+                                }
+                            </div>
+                        </ul>
+
+                    </div>
+
+                </div>
+
+
+                }
             </div>
         </div>
         <div class="w-full h-full flex flex-row">
-            <div class="min-w-[9.5rem] h-full w-[20%] px-2 py-3 border-r ">
+            <div class="min-w-[9.5rem] h-full w-[20%] px-2 py-3 border-r border-[#3b83f62b]"
+                (mouseenter)="showArrow = true" (mouseleave)="showArrow = false">
                 <ul class="flex flex-col p-0 items-start justify-start">
+                    <!-- Categoria -->
                     <div class="w-full flex p-0 gap-[5px] items-center">
                         <button class="h-fit list_arrow" (click)="rotateListArrow = !rotateListArrow">
                             <div class="bottom-0 right-0 w-0 h-0 border-l-[0.6rem] border-l-transparent 
                             border-t-[0.6rem] border-t-transparent border-r-[0.6rem] border-r-black list_arrow_button"
-                                [ngClass]="{'rotate-315': rotateListArrow}">
+                                [ngClass]="{'rotate-315': rotateListArrow, 'active_border': showArrow}">
                             </div>
                         </button>
                         <div class="w-full h-fit flex gap-1 items-start p-[4px] left_list_items">
@@ -23,20 +50,60 @@
                                     alt="star" class="w-4 h-4">Favoriti</span>
                         </div>
                     </div>
+                    <!-- Lista -->
                     <div class="w-full p-0 gap-2 items-center pr-4">
-                        <li>
-                            <div class="pl-6">
-                                <div class="flex items-center gap-1 p-[4px] left_list_items">
-                                    <img src="assets/icons/medium.svg" alt="" class="w-4 h-4"><span
-                                        class="text-[.8rem]">About me.pdf</span>
+
+                        @for (folder of listApps; track folder.folderName) {
+                        <li [ngClass]="{'hidden': rotateListArrow}">
+                            <div class="pl-6" (click)="selectFolder(folder)">
+                                <div class="flex items-center gap-1 p-[4px] left_list_items"
+                                    [ngClass]="{'focus': folder.isFolderSelected}">
+
+                                    <img src="assets/icons/desktop.webp" alt="" class="w-4 h-4">
+
+                                    <span class="text-[.8rem]">
+                                        {{ folder.folderName }}
+                                    </span>
+
                                 </div>
                             </div>
                         </li>
+                        }
                     </div>
                 </ul>
 
             </div>
-            <div>main space</div>
+            <div class="w-full h-full p-2">
+                @for (folder of listApps; track folder.folderName) {
+
+                @if (folderSelected === folder.folderName) {
+
+                @if (!folder.folderContent || folder.folderContent.length === 0) {
+                <div class="w-full  flex justify-center py-4">
+                    <span class="text-center text-[#00000089] text-sm">Questa cartella è vuota</span>
+                </div>
+                } @else {
+                @for (item of folder.folderContent; track item.appName) {
+
+                <!-- Verifica vista selezionata -->
+                @for (view of listOfPossibleViews; track view.optName) {
+                @if (view.isOptSeleted && view.optName === 'Contenuto') {
+                <div class="w-full flex flex-col mb-2 border-b-2 border-[#00000015]">
+
+                    <div class="w-full flex gap-[8px] p-2 left_list_items"
+                        [ngClass]="{'focus': fileSelected === item.appName}" (click)="contentSelected(item.appName)">
+                        <img src="assets/icons/desktop.webp" alt="" class="w-10 h-10">
+                        <div class="w-full flex">
+                            <div class="w-full flex items-center"><span class="text-[#000] text-sm whitespace-nowrap">{{ item.appName
+                                    }}</span></div>
+                            <div class="w-full flex items-center"><span class="text-[#00000089] text-sm whitespace-nowrap">oggi</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                }}}}}}
+            </div>
+
         </div>
     </div>
 </div>
