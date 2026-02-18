@@ -1,16 +1,11 @@
 @import "tailwindcss";
 @import "tailwindcss-primeui";
 
-/* FONT GENERICI */
-/* * {
-  font-family: "JetBrains Mono", monospace;
-} */
-
 html,
 body {
   height: 100vh;
   margin: 0;
-  background-image: url("assets/windows_bg.jpg");
+  background-image: url("assets/imgs/windows_bg.jpg");
   background-position: center;
   background-size: cover;
 }

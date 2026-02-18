@@ -3,7 +3,7 @@ import { WindowsBar } from './pc-components/windows-bar/windows-bar';
 import { CommonModule } from '@angular/common';
 import { OpenAppModal } from "./pc-components/open-app-modal/open-app-modal";
 import { WindowsApps, WindowState } from '../interfaces/modal-interface';
-import { WINDOWS_APPS_MOCK } from '../../mocks/windows-app.mock';
+import { WINDOWS_APPS_CONTENT, WINDOWS_APPS_MOCK } from '../../mocks/windows-app.mock';
 
 @Component({
   selector: 'app-pc-version',
@@ -26,6 +26,7 @@ export class PcVersion {
     cmd: 1,
   }
   highestZIndex = 1
+  listApps: Folder[] = WINDOWS_APPS_CONTENT;
 
   /* Gestione finestra aperta */
   selectWindow(appKey: string) {

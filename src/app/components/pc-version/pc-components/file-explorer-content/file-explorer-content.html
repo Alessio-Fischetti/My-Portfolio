@@ -33,11 +33,11 @@
                 }
             </div>
         </div>
-        <div class="w-full h-full flex flex-row">
-            <div class="min-w-[9.5rem] h-full w-[20%] px-2 py-3 border-r border-[#3b83f62b]"
+        <div class="w-full h-full flex flex-row overflow-y-auto">
+            <div class="min-w-[7rem] h-full w-[20%] px-2 py-3 border-r border-[#3b83f62b]"
                 (mouseenter)="showArrow = true" (mouseleave)="showArrow = false">
                 <ul class="flex flex-col p-0 items-start justify-start">
-                    <!-- Categoria -->
+                    <!-- Categoria preferiti -->
                     <div class="w-full flex p-0 gap-[5px] items-center">
                         <button class="h-fit list_arrow" (click)="rotateListArrow = !rotateListArrow">
                             <div class="bottom-0 right-0 w-0 h-0 border-l-[0.6rem] border-l-transparent 
@@ -49,7 +49,9 @@
                             <span class="flex items-center gap-1 text-[.8rem]"><img src="assets/icons/favourites.webp"
                                     alt="star" class="w-4 h-4">Favoriti</span>
                         </div>
+
                     </div>
+
                     <!-- Lista -->
                     <div class="w-full p-0 gap-2 items-center pr-4">
 
@@ -59,9 +61,9 @@
                                 <div class="flex items-center gap-1 p-[4px] left_list_items"
                                     [ngClass]="{'focus': folder.isFolderSelected}">
 
-                                    <img src="assets/icons/desktop.webp" alt="" class="w-4 h-4">
+                                    <img [src]="folder.folderImg" alt="" class="w-4 h-4">
 
-                                    <span class="text-[.8rem]">
+                                    <span class="text-[.8rem] truncate">
                                         {{ folder.folderName }}
                                     </span>
 
@@ -70,6 +72,7 @@
                         </li>
                         }
                     </div>
+
                 </ul>
 
             </div>
@@ -83,25 +86,46 @@
                     <span class="text-center text-[#00000089] text-sm">Questa cartella è vuota</span>
                 </div>
                 } @else {
+                <!-- Lista di app visibilı -->
                 @for (item of folder.folderContent; track item.appName) {
 
-                <!-- Verifica vista selezionata -->
+                <!-- View contenuto -->
                 @for (view of listOfPossibleViews; track view.optName) {
                 @if (view.isOptSeleted && view.optName === 'Contenuto') {
                 <div class="w-full flex flex-col mb-2 border-b-2 border-[#00000015]">
 
                     <div class="w-full flex gap-[8px] p-2 left_list_items"
                         [ngClass]="{'focus': fileSelected === item.appName}" (click)="contentSelected(item.appName)">
-                        <img src="assets/icons/desktop.webp" alt="" class="w-10 h-10">
+                        <img [src]="item.appImg" alt="" class="w-10 h-10">
                         <div class="w-full flex">
-                            <div class="w-full flex items-center"><span class="text-[#000] text-sm whitespace-nowrap">{{ item.appName
+                            <div class="w-full flex items-center"><span class="text-[#000] text-sm whitespace-nowrap">{{
+                                    item.appName
                                     }}</span></div>
-                            <div class="w-full flex items-center"><span class="text-[#00000089] text-sm whitespace-nowrap">oggi</span>
+                            <div class="w-full flex items-center"><span
+                                    class="text-[#00000089] text-sm whitespace-nowrap truncate">18.02.2026 20:02</span>
                             </div>
                         </div>
                     </div>
                 </div>
-                }}}}}}
+                }
+                }}}}}
+
+                <!-- View Icone Grandi -->
+                <div class="flex flex-row gap-3">
+                    @for (view of listOfPossibleViews; track view.optName) {
+                    @if (view.isOptSeleted && view.optName === 'Grandi Icone') {
+
+                    @for (folder of listApps; track folder.folderName) {
+                    @if (folderSelected === folder.folderName) {
+
+                    @for (item of folder.folderContent; track item.appName) {
+                    <div class="w-[8rem] h-[7rem] flex flex-col items-center gap-1 p-2 left_list_items"
+                        [ngClass]="{'focus': fileSelected === item.appName}" (click)="contentSelected(item.appName)">
+                        <img [src]="item.appImg" alt="" class="w-15 h-15">
+                        <span class="text-sm text-center">{{item.appName}}</span>
+                    </div>
+                    }}}}}
+                </div>
             </div>
 
         </div>

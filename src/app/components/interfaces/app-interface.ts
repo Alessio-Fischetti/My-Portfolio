@@ -7,6 +7,7 @@ interface AppItem {
 interface Folder {
     folderName: string;
     isFolderSelected: boolean;
+    folderImg: string;
     folderContent: AppItem[];
 }
 

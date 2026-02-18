@@ -68,32 +68,58 @@ export const WINDOWS_APPS_CONTENT: Folder[] = [
     {
         folderName: "Desktop",
         isFolderSelected: true,
+        folderImg: 'assets/icons/desktop.webp',
         folderContent: [
             {
                 appName: 'About me.pdf',
-                appImg: '',
+                appImg: 'assets/icons/pdf.svg',
                 appService: ''
             },
             {
-                appName: 'Video',
-                appImg: '',
+                appName: 'Cv Alessio Fischetti.pdf',
+                appImg: 'assets/icons/pdf.svg',
                 appService: ''
             },
             {
-                appName: 'Immagini.pdf',
-                appImg: '',
+                appName: 'Progetti',
+                appImg: 'assets/icons/vscode.svg',
                 appService: ''
             },
+            {
+                appName: 'Contattami',
+                appImg: 'assets/icons/contact.png',
+                appService: ''
+            },
+
         ]
     },
     {
-        folderName: "Video",
+        folderName: "Documenti",
         isFolderSelected: false,
+        folderImg: 'assets/icons/documents_folder.webp',
         folderContent: []
+    },
+    {
+        folderName: "Downlaod",
+        isFolderSelected: false,
+        folderImg: 'assets/icons/download.webp',
+        folderContent: []
+    },
+    {
+        folderName: "Immagini",
+        isFolderSelected: false,
+        folderImg: 'assets/icons/images.webp',
+        folderContent: [
+            {
+                appName: 'About me.pdf',
+                appImg: 'assets/imgs/alessio_header_photo.jpeg',
+                appService: ''
+            },
+        ]
     }
 ]
 
 export const WINDOWS_APP_VIEWS: AppViews[] = [
-    { optName: 'Grandi Icone', isOptSeleted: false, img:"assets/icons/big_img_size.webp" },
-    { optName: 'Contenuto', isOptSeleted: true, img: 'assets/icons/img_size_list.webp'}
+    { optName: 'Grandi Icone', isOptSeleted: false, img: "assets/icons/big_img_size.webp" },
+    { optName: 'Contenuto', isOptSeleted: true, img: 'assets/icons/img_size_list.webp' }
 ];

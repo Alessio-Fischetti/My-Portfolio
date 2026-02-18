@@ -1,6 +1,7 @@
 <div class="drag-container w-full" style="height: calc(100% - 3rem);">
     @for (openApp of openedWindows; track $index) {
-    <open-app-modal [selectedApp]="windowsApps[openApp.appName]" [appKey]="openApp.appName" (app)="closeModal($event)" (saveDragPosition)="saveDragHandle($event)"  (mousedown)="bringToFront(openApp.appName)">
+    <open-app-modal [selectedApp]="windowsApps[openApp.appName]" [appKey]="openApp.appName" (app)="closeModal($event)"
+        (saveDragPosition)="saveDragHandle($event)" (mousedown)="bringToFront(openApp.appName)">
     </open-app-modal>
     }
 </div>
