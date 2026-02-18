@@ -1,1 +1,42 @@
-fasdfa
+<div class="w-full h-full">
+    <div class="w-full h-full flex flex-col">
+        <div class="w-full h-[2rem] border-y flex justify-between items-center file_exp_bar">
+            <span class="text-[0.75rem] ml-3 text-center">Desktop</span>
+            <div class="mr-3">
+                <button class="flex items-center px-2 py-[.25rem] file_exp_bar_button">
+                    <span class="text-[0.75rem]"><img src="assets/icons/img_size.webp" alt=""></span>
+                </button>
+            </div>
+        </div>
+        <div class="w-full h-full flex flex-row">
+            <div class="min-w-[9.5rem] h-full w-[20%] px-2 py-3 border-r ">
+                <ul class="flex flex-col p-0 items-start justify-start">
+                    <div class="w-full flex p-0 gap-[5px] items-center">
+                        <button class="h-fit list_arrow" (click)="rotateListArrow = !rotateListArrow">
+                            <div class="bottom-0 right-0 w-0 h-0 border-l-[0.6rem] border-l-transparent 
+                            border-t-[0.6rem] border-t-transparent border-r-[0.6rem] border-r-black list_arrow_button"
+                                [ngClass]="{'rotate-315': rotateListArrow}">
+                            </div>
+                        </button>
+                        <div class="w-full h-fit flex gap-1 items-start p-[4px] left_list_items">
+                            <span class="flex items-center gap-1 text-[.8rem]"><img src="assets/icons/favourites.webp"
+                                    alt="star" class="w-4 h-4">Favoriti</span>
+                        </div>
+                    </div>
+                    <div class="w-full p-0 gap-2 items-center pr-4">
+                        <li>
+                            <div class="pl-6">
+                                <div class="flex items-center gap-1 p-[4px] left_list_items">
+                                    <img src="assets/icons/medium.svg" alt="" class="w-4 h-4"><span
+                                        class="text-[.8rem]">About me.pdf</span>
+                                </div>
+                            </div>
+                        </li>
+                    </div>
+                </ul>
+
+            </div>
+            <div>main space</div>
+        </div>
+    </div>
+</div>

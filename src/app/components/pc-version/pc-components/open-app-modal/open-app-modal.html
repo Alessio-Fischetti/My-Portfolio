@@ -16,15 +16,15 @@
             </span>
         </div>
         <div
-            class="flex self-start justify-self-end w-fit mr-2 shadow-2xl shadow-white rounded-b-[4px] border-x-[0.800px] border-b-[0.800px] windows_modal_header_keys ">
+            class="h-5 flex self-start justify-self-end w-fit mr-2 shadow-2xl shadow-white rounded-b-[4px] border-x-[0.800px] border-b-[0.800px] windows_modal_header_keys ">
             <!-- Minimizza -->
-            <button class="relative z-10 flex items-center justify-center w-10 h-6 p-0
+            <button class="relative z-10 flex items-center justify-center w-8 p-0
            rounded-b-lg border-r-[0.800px] windows_modal_header_actions " (click)="minimizeWindow()">
-                <div class="w-[13px] h-[5px] bg-white border-[#404a5496] border-1 mt-1 shadow-2xl"></div>
+                <div class="w-[12px] h-[4.5px] bg-white border-[#404a5496] border-1 mt-1 shadow-2xl"></div>
             </button>
             <!-- ingrandisci -->
             <button
-                class="relative z-10 flex items-center justify-center w-9 h-6 p-0 border-r-[0.800px] border-l-0 windows_modal_header_actions"
+                class="relative z-10 flex items-center justify-center w-7 p-0 border-r-[0.800px] border-l-0 windows_modal_header_actions"
                 (click)="increaseSizeByMax()">
                 <svg class="border-[#404a5496] border-1 mt-1 shadow-2xl" width="15" height="11" viewBox="0 0 10 8"
                     fill="none" stroke="white" stroke-width="3">
@@ -34,7 +34,7 @@
                 </svg>
             </button>
             <!-- Chiudi -->
-            <button class="relative z-10 flex items-center justify-center w-11 h-6 p-0
+            <button class="relative z-10 flex items-center justify-center w-9 p-0
            bg-gray-200 border-r rounded-b-lg windows_modal_header_close" (click)="closeModal()">
                 <span class="text-white">x</span>
             </button>
