@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, HostListener, Input, Output, SimpleChanges } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ModalSevice } from '../../../../service/modal-service';
+import { TimeInterval } from 'rxjs/internal/operators/timeInterval';
 
 @Component({
   selector: 'app-windows-bar',
@@ -15,6 +16,7 @@ export class WindowsBar {
   @Output() windowSelected = new EventEmitter<string>();
   /* Variables */
   currentHour: Date = new Date()
+  interval!: any;
   shrinkRightCorner!: number;
   linkApps: { linkName: string, linkImg: string }[] = [
     { linkName: 'linkedin', linkImg: 'assets/icons/linkedin.svg' },
@@ -32,7 +34,6 @@ export class WindowsBar {
   }
   modalSub!: Subscription;
 
-
   constructor(private modalService: ModalSevice) { }
 
   get hiddenLinks() {
@@ -43,7 +44,7 @@ export class WindowsBar {
   }
 
   ngOnInit() {
-    setInterval(() => {
+    this.interval = setInterval(() => {
       this.currentHour = new Date();
     }, 1000);
 
@@ -52,27 +53,16 @@ export class WindowsBar {
       this.openInternalModal(value)
     });
 
-    this.checkScreenSize();
-  }
-
-  ngOnChanges(changes: SimpleChanges) {
-    if (changes['newApps']) {
-      console.log(this.newApps);
-    }
+    this.onResize();
   }
 
   /* Recupera la grandezza della pagina */
   @HostListener('window:resize')
   onResize() {
-    this.checkScreenSize();
-  }
-
-  /* Verifica che la pagina non sia piu piccola di x */
-  checkScreenSize() {
     this.shrinkRightCorner = window.innerWidth;
   }
 
-  selectWindow(appKey?: string) {
+  selectWindow(appKey: string) {
     this.windowSelected.emit(appKey);
   }
 
@@ -82,13 +72,14 @@ export class WindowsBar {
 
   openInternalModal(value: any) {
     const exists = this.newApps.some(app => app.appInfo.name === value.appInfo.name);
-    
+
     if (!exists) {
       this.selectWindow(value.appInfo.name)
     }
   }
 
   ngOnDestroy() {
+    clearInterval(this.interval);
     this.modalSub.unsubscribe();
   }
 }

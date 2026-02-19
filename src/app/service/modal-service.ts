@@ -10,13 +10,9 @@ export class ModalSevice {
     private windowsApps: WindowsApps = WINDOWS_APPS_MOCK;
 
     sendData(value: any) {
-        Object.keys(this.windowsApps).forEach(key => {
-
-            const app = this.windowsApps[key];
-            
-            if (key === value.fileType) {
-                this.modalComponent.next(app);
-            }
-        })
+        const app = this.windowsApps[value.fileType];
+        if (app) {
+            this.modalComponent.next(app);
+        }
     }
 }

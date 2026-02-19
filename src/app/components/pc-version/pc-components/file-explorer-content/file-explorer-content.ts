@@ -45,32 +45,27 @@ export class FileExplorerContent {
 
   /* Recupera la view selezionata */
   contentSelected(fileRequested: AppItem) {
-    this.listApps.forEach(app => {
+    const folder = this.listApps.find(f =>
+      f.folderContent.some(file =>
+        file.appName === fileRequested.appName && file.referenceFolder === fileRequested.referenceFolder
+      )
+    );
 
-
-      const file = app.folderContent.find(
-        file => file.appName === fileRequested.appName && file.referenceFolder === fileRequested.referenceFolder
+    if (folder) {
+      const file = folder.folderContent.find(f =>
+        f.appName === fileRequested.appName && f.referenceFolder === fileRequested.referenceFolder
       );
 
       if (file) {
         this.fileSelected = file.appName;
-
         this.modalService.sendData(file);
       }
-    });
+    }
   }
 
   /* Seleziona la folder */
   selectFolder(selectedFolder: Folder) {
-    this.listApps.forEach(folder => {
-
-      if (folder.folderName === selectedFolder.folderName) {
-        folder.isFolderSelected = true
-        this.folderSelected = folder.folderName;
-      } else {
-        folder.isFolderSelected = false;
-      }
-    });
-
+    this.listApps.forEach(folder => folder.isFolderSelected = folder === selectedFolder);
+    this.folderSelected = selectedFolder.folderName;
   }
 }

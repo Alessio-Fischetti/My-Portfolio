@@ -2,8 +2,6 @@ import { Component, ElementRef, EventEmitter, HostListener, Input, Output, Type 
 import { CdkDrag, CdkDragEnd, CdkDragHandle } from '@angular/cdk/drag-drop';
 import { CommonModule } from '@angular/common';
 import { WindowState } from '../../../interfaces/modal-interface';
-import { ModalSevice } from '../../../../service/modal-service';
-import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'open-app-modal',
@@ -15,11 +13,10 @@ export class OpenAppModal {
   /* Variables */
   @Input() selectedApp: WindowState | undefined
   @Input() appKey: string | undefined
-  @Output() app = new EventEmitter<{ appKey: string | undefined; appId: number | undefined }>();
-  @Output() saveDragPosition = new EventEmitter<{ appKey: string | undefined; appId: number | undefined; dragPosition?: { x: number, y: number } }>();
+  @Output() app = new EventEmitter<{ appKey?: string; appId?: number }>();
+  @Output() saveDragPosition = new EventEmitter<{ appKey?: string; appId?: number; dragPosition?: { x: number, y: number } }>();
 
   dragPosition!: { x: number, y: number }
- 
 
   constructor(private elementRef: ElementRef) { }
 
@@ -69,10 +66,10 @@ export class OpenAppModal {
   /* Recupera posizione */
   onDragEnded(event: CdkDragEnd) {
     this.dragPosition = { ...event.source.getFreeDragPosition() };
+
     this.selectedApp!.dragPosition = this.dragPosition;
 
     if (!this.selectedApp) return;
-    this.selectedApp.dragPosition = { ...event.source.getFreeDragPosition() };
 
     this.saveDragPosition.emit({
       appKey: this.appKey,
@@ -82,9 +79,7 @@ export class OpenAppModal {
   }
 
   /* Chiude modale */
-  closeModal() {
-    console.log(this.appKey, this.selectedApp);
-    
+  closeModal() {    
     this.app.emit({ appKey: this.appKey, appId: this.selectedApp?.id })
   }
 }

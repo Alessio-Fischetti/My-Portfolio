@@ -19,15 +19,7 @@ export class PcVersion {
   openedWindows: { appName: string, appId: number }[] = [
     { appName: 'cmd', appId: 1 }
   ];
-  windowSelected: string | undefined;
-  idToGive: any = {
-    windows_icon: 0,
-    search: 0,
-    file_explorer: 0,
-    cmd: 1,
-    cv: 0,
-    about_me: 0,
-  }
+
   highestZIndex = 1
   listApps: Folder[] = WINDOWS_APPS_CONTENT;
   fileSelected: string | undefined;
@@ -48,51 +40,44 @@ export class PcVersion {
   }
 
   /* Gestione finestra aperta */
-  selectWindow(appKey?: string) {
+  selectWindow(appKey: string) {
 
-    Object.keys(this.windowsApps).forEach(key => {
+    const app = this.windowsApps[appKey];
 
-      const app = this.windowsApps[key];
+    if (app) {
 
-      if (key === appKey) {
+      /* Se aperta → minimizza */
+      if (app.id != 0 && !app.isMinimized) {
+        app.isOpen = false;
+        app.isSelected = false;
+        app.isMinimized = true;
 
-        /* Se aperta → minimizza */
-        if (app.id != 0 && !app.isMinimized) {
-          app.isOpen = false;
-          app.isSelected = false;
-          app.isMinimized = true;
+        this.minimizeSelectedWindow(app, appKey);
 
-          this.minimizeSelectedWindow(app, appKey);
+        /* Se minimizzata → riapri */
+      } else if (app.id !== 0 && app.isMinimized) {
+        app.isOpen = true;
+        app.isSelected = true;
+        app.isMinimized = false;
+        this.openMinimizzedWindow(app, appKey);
 
-          /* Se minimizzata → riapri */
-        } else if (app.id !== 0 && app.isMinimized) {
-          app.isOpen = true;
-          app.isSelected = true;
-          app.isMinimized = false;
-          this.openMinimizzedWindow(app, appKey);
+        /* Se non esiste → creane una nuova */
+      } else if (app.id === 0 && !app.isMinimized) {
+        app.isOpen = true;
+        app.isSelected = true;
+        app.onBackground = true;
+        app.isMinimized = false;
 
-          /* Se non esiste → creane una nuova */
-        } else if (app.id === 0 && !app.isMinimized && app.howMany < 1) {
-          app.isOpen = true;
-          app.isSelected = true;
-          app.onBackground = true;
-          app.isMinimized = false;
-
-          this.idToGive[key] = this.idToGive[key] + 1;
-          app.id = this.idToGive[key];
+        app.id = 1;
+        /* Controllo per evitare di aprire doppioni di oggetti statici */
+        if (app.appInfo.name != 'file_explorer' && app.appInfo.name != 'cmd') {
           this.newApps.push(app)
-          console.log('new one', app);
-
-          this.openSelectedWindow(appKey, app);
         }
 
-      } else {
-        // tutte le altre si deselezionano
-        app.isSelected = false;
+        this.openSelectedWindow(appKey, app);
       }
 
-    });
-
+    }
   }
 
   /* Salva la posizione della modale */
@@ -111,6 +96,7 @@ export class PcVersion {
       appName: appKey,
       appId: app!.id!
     });
+    this.bringToFront(appKey)
   }
 
   /* Gestione minimizzazione */
@@ -136,14 +122,12 @@ export class PcVersion {
 
   /* Modifica index e aggiusta la windows bar per la selezione app aperta  */
   bringToFront(appKey: any) {
-    Object.keys(this.windowsApps).forEach(key => {
+    const app = this.windowsApps[appKey];
 
-      const app = this.windowsApps[key];
-      if (key === appKey) {
-        this.highestZIndex++;
-        app.zIndex = this.highestZIndex;
-      }
-    })
+    if (app) {
+      this.highestZIndex++;
+      app.zIndex = this.highestZIndex;
+    }
   }
 
   /* Gestione chiusura */
@@ -156,13 +140,9 @@ export class PcVersion {
     app.isSelected = false;
     app.isMinimized = false;
     app.onBackground = false;
-    app.howMany = 0;
     this.newApps = this.newApps.filter(
       newApp => (newApp.appInfo.name !== app.appInfo.name)
     );
-
-    console.log(this.newApps);
-    
 
     this.openedWindows = this.openedWindows.filter(
       win => !(win.appName === appValue.appKey && win.appId === appValue.appId)

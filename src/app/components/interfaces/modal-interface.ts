@@ -11,7 +11,6 @@ export interface WindowState {
     isOpen: boolean;
     isMinimized: boolean;
     isSelected: boolean;
-    howMany: number;
     onBackground: boolean;
     lastDragPosition: { x: number, y: number },
     dragPosition: { x: number, y: number };
