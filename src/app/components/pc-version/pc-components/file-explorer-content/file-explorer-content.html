@@ -95,7 +95,7 @@
                 <div class="w-full flex flex-col mb-2 border-b-2 border-[#00000015]">
 
                     <div class="w-full flex gap-[8px] p-2 left_list_items"
-                        [ngClass]="{'focus': fileSelected === item.appName}" (click)="contentSelected(item.appName)">
+                        [ngClass]="{'focus': fileSelected === item.appName}" (click)="contentSelected(item)">
                         <img [src]="item.appImg" alt="" class="w-10 h-10">
                         <div class="w-full flex">
                             <div class="w-full flex items-center"><span class="text-[#000] text-sm whitespace-nowrap">{{
@@ -120,7 +120,7 @@
 
                     @for (item of folder.folderContent; track item.appName) {
                     <div class="w-[8rem] h-[7rem] flex flex-col items-center gap-1 p-2 left_list_items"
-                        [ngClass]="{'focus': fileSelected === item.appName}" (click)="contentSelected(item.appName)">
+                        [ngClass]="{'focus': fileSelected === item.appName}" (click)="contentSelected(item)">
                         <img [src]="item.appImg" alt="" class="w-15 h-15">
                         <span class="text-sm text-center">{{item.appName}}</span>
                     </div>

@@ -1,8 +1,9 @@
 import { Type } from "@angular/core";
 
 export interface AppModalInterface {
-    name: string | undefined,
-    image: string | undefined,
+    name: string,
+    image: string,
+    modalTitle?: string
 }
 
 export interface WindowState {

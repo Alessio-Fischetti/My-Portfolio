@@ -10,13 +10,9 @@
         #B5D8FF;
     ;
     resize: both;
-    /* permette resize verticale e orizzontale */
     overflow: hidden;
-    /* dimensione minima */
     max-width: 100%;
-    /* dimensione massima */
     max-height: calc(100% - 3rem);
-    /* dimensione massima */
 }
 
 /* Bottoni modale */

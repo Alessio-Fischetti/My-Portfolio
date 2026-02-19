@@ -5,3 +5,23 @@ app-windows-bar {
     width: 100%;
     height: clamp(48px, 5vh, 64px);
 }
+
+.modal-wrapper::backdrop {
+    pointer-events: none;
+}
+
+.left_list_items {
+    border: 1px solid rgba(0, 0, 0, 0);
+    border-radius: 3px;
+
+    &:hover {
+        border-color: #b8d6fc;
+        background: linear-gradient(to top, rgba(193, 220, 252, 0.6666666667), rgba(220, 235, 252, 0.6666666667));
+        box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .6666666667);
+    }
+
+    &.focus {
+        border-color: #96c1fa;
+        background: linear-gradient(to top, rgba(193, 220, 252, 0.6666666667), rgba(220, 235, 252, 0.6666666667));
+    }
+}

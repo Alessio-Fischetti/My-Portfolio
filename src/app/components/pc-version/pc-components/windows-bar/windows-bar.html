@@ -27,7 +27,6 @@
             class="absolute bottom-1 w-6 h-[2px] bg-[#7fbfff] rounded"></div>
     </div>
 
-
     <!-- CMD -->
     <div class="relative w-10 h-10 flex items-center justify-center rounded
          transition-all duration-150
@@ -44,10 +43,26 @@
             class="absolute bottom-1 w-6 h-[2px] bg-[#7fbfff] rounded"></div>
     </div>
 
+    <!-- Nuove app aperte -->
+    @for (newApp of newApps; track $index) {
+    <div class="relative w-10 h-10 flex items-center justify-center rounded
+            hover:bg-[rgba(255,255,255,0.1)]
+            hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.4),0_0_6px_rgba(255,255,255,0.25)]
+            transition-all duration-150" [ngClass]="{
+       'bg-[rgba(255,255,255,0.12)] shadow-[inset_0_1px_0_rgba(255,255,255,0.4),0_0_6px_rgba(255,255,255,0.25)]':
+       newApp.isSelected
+     }" (click)="selectWindow(newApp['appInfo'].name)">
 
+        <img [src]="newApp['appInfo'].image" class="w-7 h-7">
 
+        <!-- Open indicator -->
+        <div *ngIf="newApp['onBackground'] || newApp['isOpen']" class="absolute bottom-1 w-6 h-[2px] bg-[#7fbfff] rounded">
+        </div>
 
-    <div class="h-100 ml-auto flex">
+    </div>
+    }
+
+    <div class="h-100 ml-auto flex items-center">
 
         <!-- Links -->
         <!-- Freccia per vedere link Nascosti -->
@@ -66,7 +81,7 @@
 
             @for (links of hiddenLinks; track $index) {
             <div class="w-10 h-10 flex justify-center items-center task_item">
-                <img [src]="links.linkImg" [alt]="links.linkName" class="w-8 h-8">
+                <img [src]="links.linkImg" [alt]="links.linkName" class="w-5 h-5">
             </div>
             }
 
@@ -77,7 +92,7 @@
         <!-- Link Visibili -->
         @for (links of visibleLinks; track $index) {
         <div class="w-10 h-10 flex justify-center items-center task_item">
-            <img [src]="links.linkImg" [alt]="links.linkName" class="w-8 h-8">
+            <img [src]="links.linkImg" [alt]="links.linkName" class="w-5 h-5">
         </div>
         }
 

@@ -1,8 +1,22 @@
-<div class="drag-container w-full" style="height: calc(100% - 3rem);">
+<div class="absolute flex flex-col ">
+    @for (apps of listApps; track apps.folderName) {
+    @if (apps.folderName === 'Desktop') {
+    @for (file of apps.folderContent; track file.appName) {
+    <div class="w-[8rem] h-[7rem] flex flex-col items-center gap-1 p-2 left_list_items"
+        [ngClass]="{'focus': fileSelected === file.appName}" (click)="contentSelected(file.appName)">
+
+        <img [src]="file.appImg" alt="" class="w-13 h-13">
+        <span class="text-sm text-center text-[#fff] text-shadow-lg">
+            {{file.appName}}
+        </span>
+    </div>
+    }}}
+</div>
+<app-windows-bar [windowsApps]="windowsApps" [newApps]="newApps" (windowSelected)="selectWindow($event)"></app-windows-bar>
+<div class="drag-container w-full modal-wrapper" style="height: calc(100% - 3rem);">
     @for (openApp of openedWindows; track $index) {
     <open-app-modal [selectedApp]="windowsApps[openApp.appName]" [appKey]="openApp.appName" (app)="closeModal($event)"
         (saveDragPosition)="saveDragHandle($event)" (mousedown)="bringToFront(openApp.appName)">
     </open-app-modal>
     }
 </div>
-<app-windows-bar [windowsApps]="windowsApps" (windowSelected)="selectWindow($event)"></app-windows-bar>

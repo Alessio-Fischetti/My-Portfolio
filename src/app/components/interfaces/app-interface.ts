@@ -1,17 +1,21 @@
-interface AppItem {
+import { Type } from "@angular/core";
+
+export interface AppItem {
     appName: string;
     appImg: string;
-    appService: string;
+    component?: Type<any>,
+    referenceFolder: string,
+    fileType: string
 }
 
-interface Folder {
+export interface Folder {
     folderName: string;
     isFolderSelected: boolean;
     folderImg: string;
     folderContent: AppItem[];
 }
 
-interface AppViews {
+export interface AppViews {
     optName: string,
     isOptSeleted: boolean,
     img: string

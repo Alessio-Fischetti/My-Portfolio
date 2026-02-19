@@ -1,7 +1,9 @@
-import { Component, ElementRef, EventEmitter, HostListener, Input, Output } from '@angular/core';
+import { Component, ElementRef, EventEmitter, HostListener, Input, Output, Type } from '@angular/core';
 import { CdkDrag, CdkDragEnd, CdkDragHandle } from '@angular/cdk/drag-drop';
 import { CommonModule } from '@angular/common';
 import { WindowState } from '../../../interfaces/modal-interface';
+import { ModalSevice } from '../../../../service/modal-service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'open-app-modal',
@@ -17,6 +19,7 @@ export class OpenAppModal {
   @Output() saveDragPosition = new EventEmitter<{ appKey: string | undefined; appId: number | undefined; dragPosition?: { x: number, y: number } }>();
 
   dragPosition!: { x: number, y: number }
+ 
 
   constructor(private elementRef: ElementRef) { }
 
@@ -80,6 +83,8 @@ export class OpenAppModal {
 
   /* Chiude modale */
   closeModal() {
+    console.log(this.appKey, this.selectedApp);
+    
     this.app.emit({ appKey: this.appKey, appId: this.selectedApp?.id })
   }
 }

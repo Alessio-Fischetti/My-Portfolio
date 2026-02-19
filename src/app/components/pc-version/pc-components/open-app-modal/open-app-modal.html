@@ -12,7 +12,7 @@
         <div class="flex items-center gap-2 p-t-1 p-2 p-b-1">
             <img src="{{selectedApp?.appInfo?.image}}" alt="cmd" class="w-6 h-6">
             <span class="text-sm [text-shadow:2px_2px_6px_white,0_0_10px_white]">
-                {{selectedApp?.appInfo?.name}}
+                {{ selectedApp?.appInfo?.modalTitle ? selectedApp?.appInfo?.modalTitle : selectedApp?.appInfo?.name }}
             </span>
         </div>
         <div

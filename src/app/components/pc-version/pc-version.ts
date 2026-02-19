@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { OpenAppModal } from "./pc-components/open-app-modal/open-app-modal";
 import { WindowsApps, WindowState } from '../interfaces/modal-interface';
 import { WINDOWS_APPS_CONTENT, WINDOWS_APPS_MOCK } from '../../mocks/windows-app.mock';
+import { AppItem, Folder } from '../interfaces/app-interface';
 
 @Component({
   selector: 'app-pc-version',
@@ -24,15 +25,35 @@ export class PcVersion {
     search: 0,
     file_explorer: 0,
     cmd: 1,
+    cv: 0,
+    about_me: 0,
   }
   highestZIndex = 1
   listApps: Folder[] = WINDOWS_APPS_CONTENT;
+  fileSelected: string | undefined;
+  newApps: any[] = []
+
+  /* Recupera la view selezionata */
+  contentSelected(fileRequested: string) {
+    this.listApps.forEach(app => {
+
+      const file = app.folderContent.find(
+        file => file.appName === fileRequested
+      );
+
+      if (file) {
+        this.fileSelected = file.appName;
+      }
+    });
+  }
 
   /* Gestione finestra aperta */
-  selectWindow(appKey: string) {
+  selectWindow(appKey?: string) {
+
     Object.keys(this.windowsApps).forEach(key => {
 
       const app = this.windowsApps[key];
+
       if (key === appKey) {
 
         /* Se aperta → minimizza */
@@ -40,7 +61,6 @@ export class PcVersion {
           app.isOpen = false;
           app.isSelected = false;
           app.isMinimized = true;
-          console.log('mın');
 
           this.minimizeSelectedWindow(app, appKey);
 
@@ -49,11 +69,10 @@ export class PcVersion {
           app.isOpen = true;
           app.isSelected = true;
           app.isMinimized = false;
-          console.log('aprı', appKey, app);
           this.openMinimizzedWindow(app, appKey);
 
           /* Se non esiste → creane una nuova */
-        } else if (app.id === 0 && !app.isMinimized) {
+        } else if (app.id === 0 && !app.isMinimized && app.howMany < 1) {
           app.isOpen = true;
           app.isSelected = true;
           app.onBackground = true;
@@ -61,8 +80,10 @@ export class PcVersion {
 
           this.idToGive[key] = this.idToGive[key] + 1;
           app.id = this.idToGive[key];
+          this.newApps.push(app)
+          console.log('new one', app);
 
-          this.openSelectedWindow(app, appKey);
+          this.openSelectedWindow(appKey, app);
         }
 
       } else {
@@ -78,7 +99,6 @@ export class PcVersion {
   saveDragHandle(appValue: { appKey: string | undefined; appId: number | undefined; dragPosition?: { x: number, y: number } }) {
     const app = this.windowsApps[appValue.appKey!];
     if (!app) return;
-    console.log(appValue.dragPosition);
 
     if (appValue.dragPosition) {
       app.dragPosition = { ...appValue.dragPosition };
@@ -86,10 +106,10 @@ export class PcVersion {
   }
 
   /* Gestione apertura */
-  openSelectedWindow(app: WindowState, appKey: string) {
+  openSelectedWindow(appKey: string, app?: WindowState) {
     this.openedWindows.push({
       appName: appKey,
-      appId: app.id!
+      appId: app!.id!
     });
   }
 
@@ -126,7 +146,6 @@ export class PcVersion {
     })
   }
 
-
   /* Gestione chiusura */
   closeModal(appValue: { appKey: string | undefined, appId: number | undefined }) {
     const app = this.windowsApps[appValue.appKey!];
@@ -137,7 +156,13 @@ export class PcVersion {
     app.isSelected = false;
     app.isMinimized = false;
     app.onBackground = false;
+    app.howMany = 0;
+    this.newApps = this.newApps.filter(
+      newApp => (newApp.appInfo.name !== app.appInfo.name)
+    );
 
+    console.log(this.newApps);
+    
 
     this.openedWindows = this.openedWindows.filter(
       win => !(win.appName === appValue.appKey && win.appId === appValue.appId)
