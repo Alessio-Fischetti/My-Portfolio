@@ -1,8 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Output, Type } from '@angular/core';
-import { WINDOWS_APP_VIEWS, WINDOWS_APPS_CONTENT } from '../../../../mocks/windows-app.mock';
-import { AppItem, AppViews, Folder } from '../../../interfaces/app-interface';
-import { ModalSevice } from '../../../../service/modal-service';
+import { Component } from '@angular/core';
+import { WINDOWS_APP_VIEWS, WINDOWS_APPS_CONTENT } from '../../../../../mocks/windows-app.mock';
+import { ModalSevice } from '../../../../../service/modal-service';
+import { AppViews, Folder, AppItem } from '../../../../interfaces/app-interface';
+
 
 @Component({
   selector: 'app-file-explorer-content',
@@ -30,7 +31,7 @@ export class FileExplorerContent {
   }
 
   /* Seleziona la vıew */
-  selectView(viewSelected: string) {
+  selectView(viewSelected: string) {    
     this.listOfPossibleViews.forEach(v => {
 
       if (viewSelected === v.optName) {
@@ -45,6 +46,7 @@ export class FileExplorerContent {
 
   /* Recupera la view selezionata */
   contentSelected(fileRequested: AppItem) {
+    
     const folder = this.listApps.find(f =>
       f.folderContent.some(file =>
         file.appName === fileRequested.appName && file.referenceFolder === fileRequested.referenceFolder
@@ -58,7 +60,8 @@ export class FileExplorerContent {
 
       if (file) {
         this.fileSelected = file.appName;
-        this.modalService.sendData(file);
+        this.modalService.sendModalData(file);
+        this.modalService.sendComponentData(file);
       }
     }
   }

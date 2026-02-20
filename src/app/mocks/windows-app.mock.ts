@@ -1,8 +1,11 @@
 import { WindowsApps } from "../components/interfaces/modal-interface";
 import { Folder, AppViews } from "../components/interfaces/app-interface";
-import { CmdContent } from "../components/pc-version/pc-components/cmd-content/cmd-content";
-import { FileExplorerContent } from "../components/pc-version/pc-components/file-explorer-content/file-explorer-content";
-import { PdfContent } from "../components/pc-version/pc-components/pdf-content/pdf-content";
+import { CmdContent } from "../components/pc-version/pc-components/modal-content/cmd-content/cmd-content";
+import { PdfContent } from "../components/pc-version/pc-components/modal-content/pdf-content/pdf-content";
+import { FileExplorerContent } from "../components/pc-version/pc-components/modal-content/file-explorer-content/file-explorer-content";
+import { VscodeContent } from "../components/pc-version/pc-components/modal-content/vscode-content/vscode-content";
+import { ContactContent } from "../components/pc-version/pc-components/modal-content/contact-content/contact-content";
+import { ImageContent } from "../components/pc-version/pc-components/modal-content/image-content/image-content";
 
 export const WINDOWS_APPS_MOCK: WindowsApps = {
     windows_icon: {
@@ -62,7 +65,7 @@ export const WINDOWS_APPS_MOCK: WindowsApps = {
         lastXSize: '30%',
         ySize: '80%',
         lastYSize: '80%',
-        appInfo: { image: 'assets/icons/pdf.svg', name: 'about_me', modalTitle: 'About me.pdf' },
+        appInfo: { image: 'assets/icons/pdf.svg', name: 'about_me', modalTitle: 'About me.pdf', file: 'example.pdf' },
         component: PdfContent
     },
     cv: {
@@ -78,57 +81,57 @@ export const WINDOWS_APPS_MOCK: WindowsApps = {
         lastXSize: '30%',
         ySize: '80%',
         lastYSize: '80%',
-        appInfo: { image: 'assets/icons/cv.png', name: 'cv', modalTitle: 'Cv Alessio Fischetti.pdf' },
+        appInfo: { image: 'assets/icons/cv.png', name: 'cv', modalTitle: 'Cv Alessio Fischetti.pdf', file: 'example.pdf' },
         component: PdfContent
     },
-    /*     vscode: {
-            id: 0,
-            isOpen: false,
-            isMinimized: false,
-            isSelected: false,
-            maximazed: false,
-            onBackground: false,
-            dragPosition: { x: 50, y: 50 },
-            lastDragPosition: { x: 50, y: 50 },
-            xSize: '50%',
-            lastXSize: '50%',
-            ySize: '50%',
-            lastYSize: '50%',
-            appInfo: { image: 'assets/icons/vscode.svg', name: 'VS Code' },
-            component: FileExplorerContent
-        },
-        contact_me: {
-            id: 0,
-            isOpen: false,
-            isMinimized: false,
-            isSelected: false,
-            maximazed: false,
-            onBackground: false,
-            dragPosition: { x: 50, y: 50 },
-            lastDragPosition: { x: 50, y: 50 },
-            xSize: '50%',
-            lastXSize: '50%',
-            ySize: '50%',
-            lastYSize: '50%',
-            appInfo: { image: 'assets/icons/contact.svg', name: 'Contattami' },
-            component: FileExplorerContent
-        },
-        images: {
-            id: 0,
-            isOpen: false,
-            isMinimized: false,
-            isSelected: false,
-            maximazed: false,
-            onBackground: false,
-            dragPosition: { x: 50, y: 50 },
-            lastDragPosition: { x: 50, y: 50 },
-            xSize: '50%',
-            lastXSize: '50%',
-            ySize: '50%',
-            lastYSize: '50%',
-            appInfo: { image: 'assets/img/me.svg', name: 'İmmagini' },
-            component: FileExplorerContent
-        }, */
+    vscode: {
+        id: 0,
+        isOpen: false,
+        isMinimized: false,
+        isSelected: false,
+        maximazed: false,
+        onBackground: false,
+        dragPosition: { x: 180, y: 100 },
+        lastDragPosition: { x: 180, y: 100 },
+        xSize: '50%',
+        lastXSize: '50%',
+        ySize: '50%',
+        lastYSize: '50%',
+        appInfo: { image: 'assets/icons/vscode.svg', name: 'vscode', modalTitle: 'Vs Code' },
+        component: VscodeContent
+    },
+    contact_me: {
+        id: 0,
+        isOpen: false,
+        isMinimized: false,
+        isSelected: false,
+        maximazed: false,
+        onBackground: false,
+        dragPosition: { x: 200, y: 50 },
+        lastDragPosition: { x: 200, y: 50 },
+        xSize: '50%',
+        lastXSize: '50%',
+        ySize: '50%',
+        lastYSize: '50%',
+        appInfo: { image: 'assets/icons/contact.png', name: 'contact_me', modalTitle: 'Contattami' },
+        component: ContactContent
+    },
+    images: {
+        id: 0,
+        isOpen: false,
+        isMinimized: false,
+        isSelected: false,
+        maximazed: false,
+        onBackground: false,
+        dragPosition: { x: 300, y: 50 },
+        lastDragPosition: { x: 300, y: 50 },
+        xSize: '50%',
+        lastXSize: '50%',
+        ySize: '50%',
+        lastYSize: '50%',
+        appInfo: { image: 'assets/imgs/me.png', name: 'images', modalTitle:'About me.png' },
+        component: ImageContent
+    },
 
 };
 
@@ -202,7 +205,7 @@ export const WINDOWS_APPS_CONTENT: Folder[] = [
         folderContent: [
             {
                 appName: 'CV Alessio Fischetti.pdf',
-                appImg: 'assets/icons/pdf.svg',
+                appImg: 'assets/icons/cv.png',
                 referenceFolder: 'Download',
                 fileType: "cv"
             }

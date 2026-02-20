@@ -5,6 +5,7 @@ import { OpenAppModal } from "./pc-components/open-app-modal/open-app-modal";
 import { WindowsApps, WindowState } from '../interfaces/modal-interface';
 import { WINDOWS_APPS_CONTENT, WINDOWS_APPS_MOCK } from '../../mocks/windows-app.mock';
 import { AppItem, Folder } from '../interfaces/app-interface';
+import { ModalSevice } from '../../service/modal-service';
 
 @Component({
   selector: 'app-pc-version',
@@ -19,11 +20,12 @@ export class PcVersion {
   openedWindows: { appName: string, appId: number }[] = [
     { appName: 'cmd', appId: 1 }
   ];
-
   highestZIndex = 1
   listApps: Folder[] = WINDOWS_APPS_CONTENT;
   fileSelected: string | undefined;
   newApps: any[] = []
+
+  constructor(private modalService: ModalSevice) { }
 
   /* Recupera la view selezionata */
   contentSelected(fileRequested: string) {
@@ -37,6 +39,28 @@ export class PcVersion {
         this.fileSelected = file.appName;
       }
     });
+  }
+
+  /* Apre la modale dal desktop */
+  openWindowFromDesktop(windowToOpen: AppItem) {
+
+    const folder = this.listApps.find(f =>
+      f.folderContent.some(file =>
+        file.appName === windowToOpen.appName && file.referenceFolder === windowToOpen.referenceFolder
+      )
+    );
+
+    if (folder) {
+      const file = folder.folderContent.find(f =>
+        f.appName === windowToOpen.appName && f.referenceFolder === windowToOpen.referenceFolder
+      );
+
+      if (file) {
+        this.fileSelected = file.appName;
+        this.modalService.sendModalData(file);
+        this.modalService.sendComponentData(file);
+      }
+    }
   }
 
   /* Gestione finestra aperta */
@@ -81,7 +105,10 @@ export class PcVersion {
   }
 
   /* Salva la posizione della modale */
-  saveDragHandle(appValue: { appKey: string | undefined; appId: number | undefined; dragPosition?: { x: number, y: number } }) {
+  saveDragHandle(appValue: {
+    appKey?: string | undefined;
+    appId?: number | undefined; dragPosition?: { x: number, y: number }
+  }) {
     const app = this.windowsApps[appValue.appKey!];
     if (!app) return;
 
@@ -131,7 +158,10 @@ export class PcVersion {
   }
 
   /* Gestione chiusura */
-  closeModal(appValue: { appKey: string | undefined, appId: number | undefined }) {
+  closeModal(appValue: {
+    appKey?: string | undefined;
+    appId?: number | undefined;
+  }) {
     const app = this.windowsApps[appValue.appKey!];
     if (!app) return;
 
@@ -148,4 +178,5 @@ export class PcVersion {
       win => !(win.appName === appValue.appKey && win.appId === appValue.appId)
     );
   }
+
 }

@@ -48,7 +48,7 @@ export class WindowsBar {
       this.currentHour = new Date();
     }, 1000);
 
-    this.modalSub = this.modalService.data$.subscribe(value => {
+    this.modalSub = this.modalService.modalData$.subscribe(value => {
 
       this.openInternalModal(value)
     });

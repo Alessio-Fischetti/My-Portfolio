@@ -3,7 +3,8 @@ import { Type } from "@angular/core";
 export interface AppModalInterface {
     name: string,
     image: string,
-    modalTitle?: string
+    modalTitle?: string,
+    file?: any
 }
 
 export interface WindowState {

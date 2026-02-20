@@ -3,7 +3,8 @@
     @if (apps.folderName === 'Desktop') {
     @for (file of apps.folderContent; track file.appName) {
     <div class="w-[8rem] h-[7rem] flex flex-col items-center gap-1 p-2 left_list_items"
-        [ngClass]="{'focus': fileSelected === file.appName}" (click)="contentSelected(file.appName)">
+        [ngClass]="{'focus': fileSelected === file.appName}" (click)="contentSelected(file.appName)"
+        (click)="openWindowFromDesktop(file)">
 
         <img [src]="file.appImg" alt="" class="w-13 h-13">
         <span class="text-sm text-center text-[#fff] text-shadow-lg">
