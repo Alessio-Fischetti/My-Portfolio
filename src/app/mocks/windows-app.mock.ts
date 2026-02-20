@@ -125,11 +125,11 @@ export const WINDOWS_APPS_MOCK: WindowsApps = {
         onBackground: false,
         dragPosition: { x: 300, y: 50 },
         lastDragPosition: { x: 300, y: 50 },
-        xSize: '50%',
-        lastXSize: '50%',
-        ySize: '50%',
-        lastYSize: '50%',
-        appInfo: { image: 'assets/imgs/me.png', name: 'images', modalTitle:'About me.png' },
+        xSize: '31%',
+        lastXSize: '31%',
+        ySize: '80%',
+        lastYSize: '80%',
+        appInfo: { image: 'assets/imgs/me.webp', name: 'images', modalTitle:'About me.png', file: 'assets/imgs/me.webp' },
         component: ImageContent
     },
 
@@ -170,7 +170,7 @@ export const WINDOWS_APPS_CONTENT: Folder[] = [
             },
             {
                 appName: 'About me.png',
-                appImg: 'assets/imgs/me.png',
+                appImg: 'assets/imgs/me.webp',
                 referenceFolder: 'Desktop',
                 fileType: "images"
             },
@@ -218,7 +218,7 @@ export const WINDOWS_APPS_CONTENT: Folder[] = [
         folderContent: [
             {
                 appName: 'About me.png',
-                appImg: 'assets/imgs/me.png',
+                appImg: 'assets/imgs/me.webp',
                 referenceFolder: 'Immagini',
                 fileType: "images"
             },

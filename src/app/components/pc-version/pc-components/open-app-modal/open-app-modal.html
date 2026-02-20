@@ -1,10 +1,11 @@
-<div class="min-w-[20rem] min-h-[40%] shadow-2xl text-black backdrop-blur-lg fixed rounded-lg window_modal_header_color"
-    [ngStyle]="{
+<div class="min-w-[20rem] min-h-[40%] shadow-2xl text-black backdrop-blur-lg fixed window_modal_header_color"
+    [ngClass]="{'rounded-lg': selectedApp?.maximazed === false}" [ngStyle]="{
     width: selectedApp?.xSize ?? '25%',
     height: `calc(${selectedApp?.ySize ?? '40%'} - 3rem)`,
     visibility: selectedApp?.isMinimized ? 'hidden' : 'visible',
     pointerEvents: selectedApp?.isMinimized ? 'none' : 'auto',
-    zIndex: selectedApp?.zIndex
+    zIndex: selectedApp?.zIndex,
+    resize: !selectedApp?.maximazed ? 'both' : 'none'
   }" cdkDrag [cdkDragFreeDragPosition]="dragPosition" cdkDragBoundary=".drag-container"
     (cdkDragEnded)="onDragEnded($event)">
     <!-- Corpo modale -->
@@ -42,8 +43,8 @@
     </div>
 
     <!-- Componente dinamico -->
-    <div class="w-full h-full p-[4px]">
-        <div class="w-full h-[calc(100%-2.5rem)] bg-[#fff] ">
+    <div class="w-full h-full" [ngClass]="{'p-[4px]': !selectedApp?.maximazed}">
+        <div class="w-full h-[calc(100%-2.5rem)] " [ngClass]="{'h-full': selectedApp?.maximazed}">
             @if (selectedApp) {
             <ng-container *ngComponentOutlet="selectedApp.component ?? null"></ng-container>
             }

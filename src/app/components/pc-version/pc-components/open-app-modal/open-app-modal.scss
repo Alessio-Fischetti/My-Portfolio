@@ -4,12 +4,6 @@
         linear-gradient(135deg, rgba(255, 255, 255, 0.3333333333) 70px, rgba(255, 255, 255, 0) 100px),
         linear-gradient(225deg, rgba(255, 255, 255, 0.3333333333) 70px, rgba(255, 255, 255, 0) 100px),
         #B5D8FF;
-    border-image: linear-gradient(rgba(255, 255, 255, 0) 30px, rgba(255, 255, 255, 0.7019607843) 40%, rgba(255, 255, 255, 0) 41%),
-        linear-gradient(135deg, rgba(255, 255, 255, 0.3333333333) 70px, rgba(255, 255, 255, 0) 100px),
-        linear-gradient(225deg, rgba(255, 255, 255, 0.3333333333) 70px, rgba(255, 255, 255, 0) 100px),
-        #B5D8FF;
-    ;
-    resize: both;
     overflow: hidden;
     max-width: 100%;
     max-height: calc(100% - 3rem);

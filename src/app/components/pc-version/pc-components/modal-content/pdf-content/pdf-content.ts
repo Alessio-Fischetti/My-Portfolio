@@ -12,7 +12,7 @@ import { ModalSevice } from '../../../../../service/modal-service';
 export class PdfContent {
   /* Variables */
   componentSub!: Subscription;
-  pdfFileToOpen!: string;
+  fileToOpen!: string;
 
   constructor(private modalService: ModalSevice) { }
 
@@ -20,7 +20,7 @@ export class PdfContent {
     this.componentSub = this.modalService.componentData$
       .subscribe(value => {
         if (!value) return;
-        this.pdfFileToOpen = value.file;
+        this.fileToOpen = value.file;
       });
   }
 
