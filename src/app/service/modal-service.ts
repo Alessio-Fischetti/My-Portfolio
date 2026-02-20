@@ -18,16 +18,41 @@ export class ModalSevice {
         }
     }
 
-    /* Sub per passare quali file aprire nel componente della modale */
-    private componentDetais = new BehaviorSubject<{ name: string; file: string, maximized?: boolean } | null>(null);
-    componentData$ = this.componentDetais.asObservable();
+    /* Sub per passare i file aprire nel componente della modale */
+    /* Cv */
+    private componentCvDetails = new BehaviorSubject<{ name: string; file: string, maximized?: boolean } | null>(null);
+    componentCvData$ = this.componentCvDetails.asObservable();
+    /* About Me */
+    private componentAboutMeDetails = new BehaviorSubject<{ name: string; file: string, maximized?: boolean } | null>(null);
+    componentAboutMeData$ = this.componentAboutMeDetails.asObservable();
+    /* Image */
+    private componentImageDetails = new BehaviorSubject<{ name: string; file: string, maximized?: boolean } | null>(null);
+    componentImageData$ = this.componentImageDetails.asObservable();
 
-    sendComponentData(value: AppItem) {
-
+    /* Cv */
+    sendComponentCvData(value: AppItem) {
         const app = { name: this.windowsApps[value.fileType].appInfo.name, file: this.windowsApps[value.fileType].appInfo.file, maximized: this.windowsApps[value.fileType].maximazed };
 
         if (app) {
-            this.componentDetais.next(app);
+            this.componentCvDetails.next(app);
+        }
+    }
+
+    /* About Me */
+    sendComponentAboutMeData(value: AppItem) {
+        const app = { name: this.windowsApps[value.fileType].appInfo.name, file: this.windowsApps[value.fileType].appInfo.file, maximized: this.windowsApps[value.fileType].maximazed };
+
+        if (app) {
+            this.componentAboutMeDetails.next(app);
+        }
+    }
+
+    /* Image */
+    sendComponentImage(value: AppItem) {
+        const app = { name: this.windowsApps[value.fileType].appInfo.name, file: this.windowsApps[value.fileType].appInfo.file, maximized: this.windowsApps[value.fileType].maximazed };
+
+        if (app) {
+            this.componentImageDetails.next(app);
         }
     }
 }

@@ -17,7 +17,7 @@ export class VscodeContent {
   constructor(private modalService: ModalSevice) { }
 
   ngOnInit() {
-    this.componentSub = this.modalService.componentData$
+    this.componentSub = this.modalService.componentCvData$
       .subscribe(value => {
         if (!value) return;
         this.fileToOpen = value.file;

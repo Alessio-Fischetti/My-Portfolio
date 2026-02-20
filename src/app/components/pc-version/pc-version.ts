@@ -58,7 +58,9 @@ export class PcVersion {
       if (file) {
         this.fileSelected = file.appName;
         this.modalService.sendModalData(file);
-        this.modalService.sendComponentData(file);
+        file.fileType == 'cv' ? this.modalService.sendComponentCvData(file) :
+          file.fileType == 'about_me' ? this.modalService.sendComponentAboutMeData(file) :
+            this.modalService.sendComponentImage(file)
       }
     }
   }
@@ -67,7 +69,7 @@ export class PcVersion {
   selectWindow(appKey: string) {
 
     const app = this.windowsApps[appKey];
-
+    
     if (app) {
 
       /* Se aperta → minimizza */

@@ -31,7 +31,7 @@ export class FileExplorerContent {
   }
 
   /* Seleziona la vıew */
-  selectView(viewSelected: string) {    
+  selectView(viewSelected: string) {
     this.listOfPossibleViews.forEach(v => {
 
       if (viewSelected === v.optName) {
@@ -46,7 +46,7 @@ export class FileExplorerContent {
 
   /* Recupera la view selezionata */
   contentSelected(fileRequested: AppItem) {
-    
+
     const folder = this.listApps.find(f =>
       f.folderContent.some(file =>
         file.appName === fileRequested.appName && file.referenceFolder === fileRequested.referenceFolder
@@ -61,7 +61,7 @@ export class FileExplorerContent {
       if (file) {
         this.fileSelected = file.appName;
         this.modalService.sendModalData(file);
-        this.modalService.sendComponentData(file);
+        file.fileType == 'cv' ? this.modalService.sendComponentCvData(file) : this.modalService.sendComponentAboutMeData(file)
       }
     }
   }

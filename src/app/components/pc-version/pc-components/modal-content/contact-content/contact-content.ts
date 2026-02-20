@@ -11,18 +11,13 @@ import { ModalSevice } from '../../../../../service/modal-service';
   styleUrl: './contact-content.scss'
 })
 export class ContactContent {
-/* Variables */
+  /* Variables */
   componentSub!: Subscription;
   fileToOpen!: string;
 
   constructor(private modalService: ModalSevice) { }
 
   ngOnInit() {
-    this.componentSub = this.modalService.componentData$
-      .subscribe(value => {
-        if (!value) return;
-        this.fileToOpen = value.file;
-      });
   }
 
   ngOnDestroy() {

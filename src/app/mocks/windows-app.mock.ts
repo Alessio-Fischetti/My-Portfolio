@@ -1,11 +1,12 @@
 import { WindowsApps } from "../components/interfaces/modal-interface";
 import { Folder, AppViews } from "../components/interfaces/app-interface";
 import { CmdContent } from "../components/pc-version/pc-components/modal-content/cmd-content/cmd-content";
-import { PdfContent } from "../components/pc-version/pc-components/modal-content/pdf-content/pdf-content";
+import { CvContent } from "../components/pc-version/pc-components/modal-content/cv-content/cv-content";
 import { FileExplorerContent } from "../components/pc-version/pc-components/modal-content/file-explorer-content/file-explorer-content";
 import { VscodeContent } from "../components/pc-version/pc-components/modal-content/vscode-content/vscode-content";
 import { ContactContent } from "../components/pc-version/pc-components/modal-content/contact-content/contact-content";
 import { ImageContent } from "../components/pc-version/pc-components/modal-content/image-content/image-content";
+import { AboutMeContent } from "../components/pc-version/pc-components/modal-content/about-me-content/about-me-content";
 
 export const WINDOWS_APPS_MOCK: WindowsApps = {
     windows_icon: {
@@ -65,8 +66,8 @@ export const WINDOWS_APPS_MOCK: WindowsApps = {
         lastXSize: '30%',
         ySize: '80%',
         lastYSize: '80%',
-        appInfo: { image: 'assets/icons/pdf.svg', name: 'about_me', modalTitle: 'About me.pdf', file: 'example.pdf' },
-        component: PdfContent
+        appInfo: { image: 'assets/icons/pdf.svg', name: 'about_me', modalTitle: 'About me.pdf', file: 'assets/About_me.pdf' },
+        component: AboutMeContent
     },
     cv: {
         id: 0,
@@ -82,7 +83,7 @@ export const WINDOWS_APPS_MOCK: WindowsApps = {
         ySize: '80%',
         lastYSize: '80%',
         appInfo: { image: 'assets/icons/cv.png', name: 'cv', modalTitle: 'Cv Alessio Fischetti.pdf', file: 'assets/Cv_Alessio_Fischetti.pdf' },
-        component: PdfContent
+        component: CvContent
     },
     vscode: {
         id: 0,
@@ -146,13 +147,13 @@ export const WINDOWS_APPS_CONTENT: Folder[] = [
                 appImg: 'assets/icons/pdf.svg',
                 referenceFolder: 'Desktop',
                 fileType: 'about_me',
-                component: PdfContent
+                component: AboutMeContent
             },
             {
                 appName: 'CV Alessio Fischetti.pdf',
                 appImg: 'assets/icons/cv.png',
                 referenceFolder: 'Desktop',
-                component: PdfContent,
+                component: CvContent,
                 fileType: "cv"
             },
             {
@@ -186,14 +187,14 @@ export const WINDOWS_APPS_CONTENT: Folder[] = [
                 appName: 'About me.pdf',
                 appImg: 'assets/icons/pdf.svg',
                 referenceFolder: 'Documenti',
-                component: PdfContent,
+                component: AboutMeContent,
                 fileType: "about_me"
             },
             {
                 appName: 'CV Alessio Fischetti.pdf',
                 appImg: 'assets/icons/cv.png',
                 referenceFolder: 'Documenti',
-                component: PdfContent,
+                component: CvContent,
                 fileType: "cv"
             },
         ]

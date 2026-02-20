@@ -17,8 +17,10 @@ export class ImageContent {
   constructor(private modalService: ModalSevice) { }
 
   ngOnInit() {
-    this.componentSub = this.modalService.componentData$
+    this.componentSub = this.modalService.componentImageData$
       .subscribe(value => {
+        console.log(value);
+        
         if (!value) return;
         this.fileToOpen = value.file;
       });
