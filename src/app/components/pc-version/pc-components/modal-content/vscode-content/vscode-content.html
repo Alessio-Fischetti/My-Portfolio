@@ -1,1 +1,73 @@
-<p>vscode-content works!</p>
+<div class="h-full bg-[#0f0f0f] flex flex-col">
+
+    <div class="h-[2.5rem] w-full flex items-center gap-2 border-b border-[#464646] overflow-hidden">
+        @for (item of ['File','Edit','Selection','View','Go','Run','Terminal','Help']; track $index) {
+        <span class="flex-shrink-0 text-[14px] px-[6px] text-[#dedede] 
+                 rounded hover:bg-[#6c6c6c9c] whitespace-nowrap">
+            {{item}}
+        </span>
+        }
+    </div>
+
+    <div class="flex flex-1 w-full overflow-hidden">
+
+        <div class="w-[clamp(180px,25%,320px)] bg-[#0f0f0f] border-r border-[#464646] flex">
+
+            <div class="w-11 flex-shrink-0 flex flex-col gap-1 pt-2 border-r border-[#464646]">
+                <div class="w-full flex gap-1 items-center">
+                    <div class="w-[2px] h-10 bg-[#1455d9]"></div>
+                    <img src="assets/icons/files.png" class="w-7 h-7">
+                </div>
+                @for (item of ['assets/icons/search.png', 'assets/icons/git.png', 'assets/icons/debug.png']; track
+                $index) {
+                <div class="w-full flex gap-1 items-center">
+                    <div class="w-[2px] h-10"></div>
+                    <img [src]="item" class="w-6 h-6">
+                </div>
+                }
+            </div>
+
+            <div class="flex-1 min-w-[180px] overflow-auto">
+                <div class="flex gap-1 p-2 items-center">
+                    <button class="h-fit" [ngClass]="{'rotate-270': rotateListArrow}"
+                        (click)="rotateListArrow = !rotateListArrow">
+                        <img src="assets/icons/arrow.png" class="w-5 h-5">
+                    </button>
+                    <span class="text-sm text-[#dedede]">Progetti</span>
+                </div>
+                @for (project of listaProgetti; track $index) {
+                <li class="flex gap-1 items-center justify-center">
+                    <button
+                        class="w-[80%] py-1 px-[10px] hover:bg-[#dedede5c] hover:cursor-pointer hover:shadow-md rounded"
+                        [ngClass]="{'focused': project.selectedProject}" (click)="selectedProject(project)">
+                        <span class="text-sm text-[#dedede] truncate whitespace-nowrap">{{project.nomeProgetto}}</span>
+                    </button>
+                </li>
+                }
+            </div>
+        </div>
+
+        <div class="flex-1 min-w-[430px] bg-[#1e1e1e] flex flex-col">
+
+            <div class="h-[2.5rem] flex items-center border-b border-[#464646] bg-[#0f0f0f]">
+                @for (openedProject of listOpenedProjects; track $index) {
+                <div class="w-fit h-full p-1  flex gap-1 items-center hover:bg-[#6c6c6c9c] border-r border-[#464646] cursor-pointer">
+                    <div class="">
+                        <span class="flex-shrink-0 text-[14px] px-[6px] text-[#dedede] 
+                  whitespace-nowrap">
+                            {{openedProject.nomeProgetto}}
+                        </span>
+                    </div>
+                    <span class="text-white">X</span>
+                </div>
+                }
+            </div>
+
+            <div class="flex-1 overflow-auto p-4">
+                <span class="text-white">editor</span>
+            </div>
+
+        </div>
+
+    </div>
+</div>

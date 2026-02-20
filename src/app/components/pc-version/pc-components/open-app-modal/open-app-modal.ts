@@ -29,14 +29,15 @@ export class OpenAppModal {
 
   ngOnInit() {
     if (!this.selectedApp?.maximazed) {
-      this.dragPosition = this.selectedApp!.lastDragPosition
+      this.dragPosition = this.selectedApp!.lastDragPosition ?? { x: 50, y: 50 };
     }
   }
-
-  /* Gestione chiusura */
   minimizeWindow() {
     if (!this.selectedApp) return;
+
     this.selectedApp.isMinimized = true;
+
+    this.selectedApp.lastDragPosition = { ...this.dragPosition };
   }
 
   /* Ingrandisce la modale 
@@ -65,21 +66,20 @@ export class OpenAppModal {
   }
   /* Recupera posizione */
   onDragEnded(event: CdkDragEnd) {
-    this.dragPosition = { ...event.source.getFreeDragPosition() };
-
-    this.selectedApp!.dragPosition = this.dragPosition;
-
     if (!this.selectedApp) return;
+
+    this.dragPosition = { ...event.source.getFreeDragPosition() };
+    this.selectedApp.dragPosition = this.dragPosition;
 
     this.saveDragPosition.emit({
       appKey: this.appKey,
       appId: this.selectedApp.id,
-      dragPosition: this.selectedApp.dragPosition
+      dragPosition: this.dragPosition
     });
   }
 
   /* Chiude modale */
-  closeModal() {    
+  closeModal() {
     this.app.emit({ appKey: this.appKey, appId: this.selectedApp?.id })
   }
 }

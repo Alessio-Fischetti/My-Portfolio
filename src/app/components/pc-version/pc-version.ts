@@ -69,7 +69,7 @@ export class PcVersion {
   selectWindow(appKey: string) {
 
     const app = this.windowsApps[appKey];
-    
+
     if (app) {
 
       /* Se aperta → minimizza */
@@ -107,15 +107,12 @@ export class PcVersion {
   }
 
   /* Salva la posizione della modale */
-  saveDragHandle(appValue: {
-    appKey?: string | undefined;
-    appId?: number | undefined; dragPosition?: { x: number, y: number }
-  }) {
-    const app = this.windowsApps[appValue.appKey!];
-    if (!app) return;
+  saveDragHandle(event: { appKey?: string; appId?: number; dragPosition?: { x: number, y: number } }) {
+    const app = this.windowsApps[event.appKey!];
+    if (!app || app.id !== event.appId) return;
 
-    if (appValue.dragPosition) {
-      app.dragPosition = { ...appValue.dragPosition };
+    if (event.dragPosition) {
+      app.dragPosition = { ...event.dragPosition };
     }
   }
 
@@ -130,6 +127,7 @@ export class PcVersion {
 
   /* Gestione minimizzazione */
   minimizeSelectedWindow(app: WindowState, appKey: string) {
+    
     if (!app.maximazed) {
       app.lastDragPosition = app.dragPosition
     }
@@ -147,16 +145,18 @@ export class PcVersion {
     if (!exists) {
       this.openedWindows.push({ appName: appKey, appId: app.id! });
     }
+
+    this.bringToFront(appKey);
   }
 
   /* Modifica index e aggiusta la windows bar per la selezione app aperta  */
-  bringToFront(appKey: any) {
+  bringToFront(appKey: string) {
     const app = this.windowsApps[appKey];
+    if (!app) return;
 
-    if (app) {
-      this.highestZIndex++;
-      app.zIndex = this.highestZIndex;
-    }
+    this.highestZIndex++;
+    app.zIndex = this.highestZIndex;
+    app.isSelected = true;
   }
 
   /* Gestione chiusura */

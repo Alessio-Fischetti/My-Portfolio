@@ -10,9 +10,18 @@ import { ModalSevice } from '../../../../../service/modal-service';
   styleUrl: './vscode-content.scss'
 })
 export class VscodeContent {
-/* Variables */
+  /* Variables */
   componentSub!: Subscription;
   fileToOpen!: string;
+  rotateListArrow: boolean = true;
+  listaProgetti: { nomeProgetto: string, readMe: string, selectedProject: boolean }[] = [
+    {
+      nomeProgetto: 'AI Implementation',
+      readMe: '',
+      selectedProject: false,
+    }
+  ];
+  listOpenedProjects: { nomeProgetto: string, readMe: string, selectedProject: boolean }[] = [];
 
   constructor(private modalService: ModalSevice) { }
 
@@ -22,6 +31,15 @@ export class VscodeContent {
         if (!value) return;
         this.fileToOpen = value.file;
       });
+  }
+
+  selectedProject(project: { nomeProgetto: string, readMe: string, selectedProject: boolean }) {
+
+    this.listaProgetti.forEach(p => p.selectedProject = false);
+    project.selectedProject = true;
+
+    this.listOpenedProjects.push(project);
+
   }
 
   ngOnDestroy() {

@@ -2,8 +2,6 @@ import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, HostListener, Input, Output, SimpleChanges } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ModalSevice } from '../../../../service/modal-service';
-import { TimeInterval } from 'rxjs/internal/operators/timeInterval';
-
 @Component({
   selector: 'app-windows-bar',
   imports: [CommonModule],
@@ -63,6 +61,9 @@ export class WindowsBar {
   }
 
   selectWindow(appKey: string) {
+    const app = this.windowsApps[appKey];
+    if (!app) return;
+    
     this.windowSelected.emit(appKey);
   }
 
