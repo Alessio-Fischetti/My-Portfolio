@@ -17,11 +17,17 @@ export class VscodeContent {
   listaProgetti: { nomeProgetto: string, readMe: string, selectedProject: boolean }[] = [
     {
       nomeProgetto: 'AI Implementation',
-      readMe: '',
+      readMe: 'AI SPACCA FRA',
       selectedProject: false,
-    }
+    },
+    {
+      nomeProgetto: 'Gestionale x',
+      readMe: 'BASIC SHIT',
+      selectedProject: false,
+    },
   ];
   listOpenedProjects: { nomeProgetto: string, readMe: string, selectedProject: boolean }[] = [];
+  selectedWindow!: string;
 
   constructor(private modalService: ModalSevice) { }
 
@@ -34,12 +40,30 @@ export class VscodeContent {
   }
 
   selectedProject(project: { nomeProgetto: string, readMe: string, selectedProject: boolean }) {
-
     this.listaProgetti.forEach(p => p.selectedProject = false);
     project.selectedProject = true;
 
-    this.listOpenedProjects.push(project);
+    // evita duplicati nella lista delle finestre aperte
+    const exists = this.listOpenedProjects.find(p => p.nomeProgetto === project.nomeProgetto);
+    if (!exists) {
+      this.listOpenedProjects.push(project);
+      this.selectedProjectWindow(project);
+    }
+  }
 
+  selectedProjectWindow(project: { nomeProgetto: string, readMe: string, selectedProject: boolean }) {
+    this.selectedWindow = project.nomeProgetto;
+  }
+
+  closeWindow(project: { nomeProgetto: string, readMe: string, selectedProject: boolean }) {
+    project.selectedProject = false;
+    this.listOpenedProjects = this.listOpenedProjects.filter(p => p.nomeProgetto !== project.nomeProgetto);
+
+    if (this.selectedWindow === project.nomeProgetto) {
+      this.selectedWindow = this.listOpenedProjects.length
+        ? this.listOpenedProjects[this.listOpenedProjects.length - 1].nomeProgetto
+        : '';
+    }
   }
 
   ngOnDestroy() {
