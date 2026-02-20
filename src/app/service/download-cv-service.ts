@@ -12,11 +12,11 @@ export class downloadCVService {
   /* Scarica il pdf */
   async downloadCV(): Promise<void> {
     try {
-      const blob = await firstValueFrom(this.http.get('assets/cv-alessio-fischetti.pdf', { responseType: 'blob' }));
+      const blob = await firstValueFrom(this.http.get('assets/Cv_Alessio_Fischetti.pdf', { responseType: 'blob' }));
       const blobUrl = window.URL.createObjectURL(blob);
       const link = document.createElement('a');
       link.href = blobUrl;
-      link.download = 'cv-alessio-fischetti.pdf';
+      link.download = 'Cv-Alessio_Fischetti.pdf';
       link.click();
       window.URL.revokeObjectURL(blobUrl);
     } catch (error) {

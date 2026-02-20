@@ -81,7 +81,7 @@ export const WINDOWS_APPS_MOCK: WindowsApps = {
         lastXSize: '30%',
         ySize: '80%',
         lastYSize: '80%',
-        appInfo: { image: 'assets/icons/cv.png', name: 'cv', modalTitle: 'Cv Alessio Fischetti.pdf', file: 'example.pdf' },
+        appInfo: { image: 'assets/icons/cv.png', name: 'cv', modalTitle: 'Cv Alessio Fischetti.pdf', file: 'assets/Cv_Alessio_Fischetti.pdf' },
         component: PdfContent
     },
     vscode: {

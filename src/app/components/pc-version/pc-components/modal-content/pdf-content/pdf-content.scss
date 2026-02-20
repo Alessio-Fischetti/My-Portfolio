@@ -1,0 +1,25 @@
+.file_exp_bar {
+    background: linear-gradient(#fff 20%, #f1f4fa 25%, #f1f4fa 43%, #d4dbee 48%, #e6eaf6);
+    border-color: rgba(0, 0, 0, 0.31);
+    color: rgba(0, 0, 0, 0.551);
+}
+
+.download_button {
+    border: 1px solid rgba(0, 0, 0, 0);
+
+    &:hover {
+        border: 1px solid #00000073;
+        border-radius: 3px;
+        box-shadow: 0px 0px 3px 0px #00000073;
+        color: #000;
+    }
+
+
+    &.disabled {
+        background: #0000002a;
+        border: 1px solid #00000073;
+        border-radius: 3px;
+        box-shadow: 0px 0px 3px 0px #00000073;
+        color: #000;
+    }
+}

@@ -19,12 +19,12 @@ export class ModalSevice {
     }
 
     /* Sub per passare quali file aprire nel componente della modale */
-    private componentDetais = new BehaviorSubject<{ name: string; file: string } | null>(null);
+    private componentDetais = new BehaviorSubject<{ name: string; file: string, maximized?: boolean } | null>(null);
     componentData$ = this.componentDetais.asObservable();
 
     sendComponentData(value: AppItem) {
 
-        const app = { name: this.windowsApps[value.fileType].appInfo.name, file: this.windowsApps[value.fileType].appInfo.file };
+        const app = { name: this.windowsApps[value.fileType].appInfo.name, file: this.windowsApps[value.fileType].appInfo.file, maximized: this.windowsApps[value.fileType].maximazed };
 
         if (app) {
             this.componentDetais.next(app);
