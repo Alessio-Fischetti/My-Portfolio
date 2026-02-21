@@ -3,6 +3,7 @@ import { Component, EventEmitter, HostListener, Input, Output, SimpleChanges } f
 import { Subscription } from 'rxjs';
 import { ModalSevice } from '../../../../service/modal-service';
 import { StartContent } from "./start-content/start-content";
+import { LanguageService } from '../../../../service/language-service';
 
 @Component({
   selector: 'app-windows-bar',
@@ -25,8 +26,8 @@ export class WindowsBar {
   ];
   showHiddenLinks: boolean = false;
   showLenguage: boolean = false;
-  leanguageSelected: string = 'ITA';
-  otherLeanguage: string = 'ENG';
+  languageSelected: string = 'ITA';
+  otherLanguage: string = 'ENG';
   showStartMenu: boolean = false;
 
 
@@ -39,7 +40,7 @@ export class WindowsBar {
   }
   modalSub!: Subscription;
 
-  constructor(private modalService: ModalSevice) { }
+  constructor(private modalService: ModalSevice, private langService: LanguageService) { }
 
   get hiddenLinks() {
     if (this.shrinkRightCorner < 800) {
@@ -54,7 +55,6 @@ export class WindowsBar {
     }, 1000);
 
     this.modalSub = this.modalService.modalData$.subscribe(value => {
-
       this.openInternalModal(value)
     });
 
@@ -95,13 +95,19 @@ export class WindowsBar {
   }
 
   /* Seleziona lingue */
-  selectLeanguage() {
-    if (this.leanguageSelected === 'ITA') {
-      this.leanguageSelected = 'ENG'
-      this.otherLeanguage = 'ITA'
+  selectLanguage() {
+    if (this.languageSelected === 'ITA') {
+      this.languageSelected = 'ENG'
+      this.otherLanguage = 'ITA'
+
+      this.langService.setLanguage('ENG');
+
     } else {
-      this.leanguageSelected = 'ITA'
-      this.otherLeanguage = 'ENG'
+      this.languageSelected = 'ITA'
+      this.otherLanguage = 'ENG'
+
+      this.langService.setLanguage('ITA');
+
     }
   }
 

@@ -1,11 +1,11 @@
-<div class="w-full h-full bg-[#fff]">
+<div class="w-full h-full bg-white">
     <div class="w-full h-full flex flex-col">
         <div class="w-full h-[2rem] border-y-2 flex justify-between items-center file_exp_bar">
-            <span class="text-[0.75rem] ml-3 text-center">Organizza</span>
+            <span class="text-[0.75rem] ml-3 text-center">{{ language.organize }}</span>
             <div class="mr-3 relative">
                 <button class="flex items-center px-2 py-[.25rem] file_exp_bar_button"
                     (click)="showSizeOpt = !showSizeOpt">
-                    <span class="text-[0.75rem]"><img src="assets/icons/big_img_size.webp" alt="Size"></span>
+                    <span class="text-[0.75rem]"><img src="assets/icons/big_img_size.webp" alt="{{ language.size }}"></span>
                 </button>
                 @if (showSizeOpt) {
                 <div class="absolute right-0 bg-[#f0f0f0] shadow-md  w-max flex flex-col">
@@ -47,7 +47,7 @@
                         </button>
                         <div class="w-full h-fit flex gap-1 items-start p-[4px] left_list_items">
                             <span class="flex items-center gap-1 text-[.8rem]"><img src="assets/icons/favourites.webp"
-                                    alt="star" class="w-4 h-4">Favoriti</span>
+                                    alt="star" class="w-4 h-4">{{ language.favourites }}</span>
                         </div>
 
                     </div>
@@ -83,10 +83,10 @@
 
                 @if (!folder.folderContent || folder.folderContent.length === 0) {
                 <div class="w-full  flex justify-center py-4">
-                    <span class="text-center text-[#00000089] text-sm">Questa cartella è vuota</span>
+                    <span class="text-center text-[#00000089] text-sm">{{ language.emptyFolder }}</span>
                 </div>
                 } @else {
-                <!-- Lista di app visibilı -->
+                <!-- Lista di app visibili -->
                 @for (item of folder.folderContent; track item.appName) {
 
                 <!-- View contenuto -->
@@ -109,6 +109,7 @@
                 </div>
                 }
                 }}}}}
+
 
                 <!-- View Icone Grandi -->
                 <div class="flex flex-row gap-3">

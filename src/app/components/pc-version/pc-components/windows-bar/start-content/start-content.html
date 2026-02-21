@@ -26,7 +26,7 @@
         </div>
         <!-- Search -->
         <div class="h-[10%] p-2 flex items-center bg-[#deeaff]">
-            <input type="search" placeholder="Cerca.." class="winui-searchbox w-full placeholder:italic
+            <input type="search" placeholder="{{ language.searchPlaceholder }}" class="winui-searchbox w-full placeholder:italic
                             placeholder:text-sm
                             placeholder:text-gray-400 pl-1
                             outline-none shadow-sm border text-xs
@@ -35,10 +35,10 @@
     </div>
     <div class="w-[40%] h-full flex flex-col justify-between gap-1 p-1">
         <div class="w-full h-[91%]">
-            <!-- Imh -->
+            <!-- Avatar -->
             <div class="flex justify-center -translate-y-[55px]">
                 <div class="avatar-button w-full h-full center-flex is-win7">
-                    <img src="/assets/imgs/me.webp" alt="User avatar" class="avatar-image">
+                    <img src="/assets/imgs/me.webp" alt="{{ language.userAvatarAlt }}" class="avatar-image">
                     <img src="/assets/icons/avatar.webp" alt="" class="avatar-frame">
                 </div>
             </div>
@@ -74,7 +74,7 @@
             <div class=" flex items-start button_down ">
                 <button class="w-full px-[7px] py-[7px] flex justify-start shadow-lg border-r border-r-[#0000001b]">
                     <span class="text-[#f3f3f3] text-[.7rem]">
-                        Spegni
+                        {{ language.shutdown }}
                     </span>
                 </button>
                 <button class="w-full px-[7px] py-[7px] flex justify-start shadow-lg">

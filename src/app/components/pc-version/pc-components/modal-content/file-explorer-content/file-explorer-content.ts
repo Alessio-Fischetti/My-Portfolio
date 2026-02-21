@@ -4,6 +4,7 @@ import { WINDOWS_APP_VIEWS, WINDOWS_APPS_CONTENT } from '../../../../../mocks/wi
 import { ModalSevice } from '../../../../../service/modal-service';
 import { AppViews, Folder, AppItem } from '../../../../interfaces/app-interface';
 import { Subscription } from 'rxjs';
+import { LanguageService } from '../../../../../service/language-service';
 
 
 @Component({
@@ -13,6 +14,7 @@ import { Subscription } from 'rxjs';
   styleUrl: './file-explorer-content.scss'
 })
 export class FileExplorerContent {
+  language: any;
   /* Variables */
   folderSelected!: string
   listOfPossibleViews: AppViews[] = WINDOWS_APP_VIEWS;
@@ -23,7 +25,7 @@ export class FileExplorerContent {
   fileSelected: string | undefined;
   componentSub!: Subscription;
 
-  constructor(private modalService: ModalSevice) { }
+  constructor(private modalService: ModalSevice, private langService: LanguageService) { }
 
   ngOnInit() {
     this.componentSub = this.modalService.componentFileExpData$
@@ -31,6 +33,10 @@ export class FileExplorerContent {
         if (!value) return;
         this.selectFolder(undefined, value)
       });
+
+    this.langService.language$.subscribe(() => {
+      this.language = this.langService.words;
+    });
 
     if (this.folderSelected === undefined) {
       this.folderSelected = 'Desktop'

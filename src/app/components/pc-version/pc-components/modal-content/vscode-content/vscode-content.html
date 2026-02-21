@@ -34,7 +34,7 @@
                     <button class="h-fit" [ngClass]="{'rotate-270': rotateListArrow}">
                         <img src="assets/icons/arrow.png" class="w-5 h-5">
                     </button>
-                    <span class="text-sm text-[#dedede]">Progetti</span>
+                    <span class="text-sm text-[#dedede]">{{ language.projects }}</span>
                 </div>
                 @for (project of listaProgetti; track $index) {
                 @if (!rotateListArrow) {
@@ -87,7 +87,7 @@
                     <a [href]="item.linkProject" target="_blank" rel="noopener noreferrer" class="flex gap-1 items-center p-2 bg-[#dedede] rounded text-inherit
                         hover:translate-y-[2px] custom_anchor">
                         <img src="assets/icons/github.svg" alt="" class="w-5 h-5">
-                        <span class="text-sm">Open in Github</span>
+                        <span class="text-sm">{{ language.openInGithub }}</span>
                     </a>
                 </div>
 

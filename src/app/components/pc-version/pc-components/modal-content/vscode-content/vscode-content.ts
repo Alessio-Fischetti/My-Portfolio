@@ -5,6 +5,7 @@ import { ModalSevice } from '../../../../../service/modal-service';
 import { MarkdownModule } from 'ngx-markdown';
 import { Projects } from '../../../../interfaces/vscode-interface';
 import { VSCODE_LISTA_PROGETTI } from '../../../../../mocks/vscode.mock';
+import { LanguageService } from '../../../../../service/language-service';
 
 
 @Component({
@@ -15,6 +16,7 @@ import { VSCODE_LISTA_PROGETTI } from '../../../../../mocks/vscode.mock';
   styleUrl: './vscode-content.scss'
 })
 export class VscodeContent {
+  language: any;
   /* Variables */
   componentSub!: Subscription;
   fileToOpen!: string;
@@ -23,7 +25,7 @@ export class VscodeContent {
   listOpenedProjects: Projects[] = [];
   selectedWindow!: string;
 
-  constructor(private modalService: ModalSevice) { }
+  constructor(private modalService: ModalSevice, private langService: LanguageService) { }
 
   ngOnInit() {
     this.componentSub = this.modalService.componentCvData$
@@ -31,6 +33,10 @@ export class VscodeContent {
         if (!value) return;
         this.fileToOpen = value.file;
       });
+
+    this.langService.language$.subscribe(() => {
+      this.language = this.langService.words;
+    });
   }
 
   /* Seleziona progetto e apre finestra */

@@ -5,6 +5,7 @@ import { WindowState } from '../../../interfaces/modal-interface';
 import { StartApp } from '../../../interfaces/app-interface';
 import { WINDOWS_START_APPS } from '../../../../mocks/windows-app.mock';
 import { ModalSevice } from '../../../../service/modal-service';
+import { LanguageService } from '../../../../service/language-service';
 
 @Component({
   selector: 'open-app-modal',
@@ -13,6 +14,8 @@ import { ModalSevice } from '../../../../service/modal-service';
   styleUrl: './open-app-modal.scss'
 })
 export class OpenAppModal {
+  language: any;
+
   /* Variables */
   @Input() selectedApp: WindowState | undefined
   @Input() appKey: string | undefined
@@ -22,7 +25,7 @@ export class OpenAppModal {
   dragPosition!: { x: number, y: number }
   startApps: StartApp[] = WINDOWS_START_APPS
 
-  constructor(private elementRef: ElementRef, private modalService: ModalSevice) { }
+  constructor(private elementRef: ElementRef, private modalService: ModalSevice, private langService: LanguageService) { }
 
   @HostListener('document:click', ['$event'])
   onClick(event: MouseEvent) {
@@ -32,6 +35,10 @@ export class OpenAppModal {
   }
 
   ngOnInit() {
+    this.langService.language$.subscribe(() => {
+      this.language = this.langService.words;
+    });
+    
     if (!this.selectedApp?.maximazed) {
       this.dragPosition = this.selectedApp!.lastDragPosition ?? { x: 50, y: 50 };
     }

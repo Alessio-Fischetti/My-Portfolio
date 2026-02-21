@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import { ModalSevice } from '../../../../../service/modal-service';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { downloadCVService } from '../../../../../service/download-cv-service';
+import { LanguageService } from '../../../../../service/language-service';
 
 @Component({
   selector: 'cv-content',
@@ -12,13 +13,14 @@ import { downloadCVService } from '../../../../../service/download-cv-service';
   styleUrl: './cv-content.scss'
 })
 export class CvContent {
+  language: any;
   /* Variables */
   @ViewChild('cvView') cvView!: ElementRef<HTMLDivElement>;
   componentSub!: Subscription;
   fileToOpen!: { fileLink: string, maximized: boolean };
   downloading: boolean = false;
 
-  constructor(private modalService: ModalSevice, private downloadCvService: downloadCVService) { }
+  constructor(private modalService: ModalSevice, private downloadCvService: downloadCVService, private langService: LanguageService) { }
 
   ngOnInit() {
     this.componentSub = this.modalService.componentCvData$
@@ -26,6 +28,9 @@ export class CvContent {
         if (!value) return;
         this.fileToOpen = { fileLink: value.file, maximized: value.maximized! };
       });
+    this.langService.language$.subscribe(() => {
+      this.language = this.langService.words;
+    });
   }
 
   downloadFile() {

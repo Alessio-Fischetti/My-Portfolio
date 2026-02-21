@@ -1,7 +1,7 @@
 <div class="w-full h-full flex flex-col pb-1 bg-[#eef3fa]">
     <div class="h-8 border-y-2 file_exp_bar flex justify-between items-center px-3">
         <div class="flex gap-2 items-center">
-            @for (item of ['File', 'Stampa', 'Email', 'Apri']; track $index) {
+            @for (item of [language.file, language.print, language.email, language.open]; track $index) {
             <span class="text-xs text-center">
                 {{ item }}
             </span>
@@ -10,7 +10,7 @@
 
         <button class="download_button text-xs p-[.5px]" [ngClass]="{ 'disabled': downloading }"
             (click)="downloadFile()" [disabled]="downloading">
-            <span class="text-xs text-center"> {{ downloading ? 'Downloading...' : 'Download' }}</span>
+            <span class="text-xs text-center"> {{ downloading ? language.downloading : language.download }}</span>
         </button>
     </div>
     <div class="w-full h-full flex flex-row items-start">

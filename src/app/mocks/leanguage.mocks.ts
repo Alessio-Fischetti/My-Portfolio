@@ -1,2 +1,0 @@
-const ita = {}
-const eng = {}

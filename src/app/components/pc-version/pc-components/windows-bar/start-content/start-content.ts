@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { WINDOWS_START_APPS } from '../../../../../mocks/windows-app.mock';
 import { StartApp } from '../../../../interfaces/app-interface';
 import { ModalSevice } from '../../../../../service/modal-service';
+import { LanguageService } from '../../../../../service/language-service';
 
 @Component({
   selector: 'start-content',
@@ -11,6 +12,7 @@ import { ModalSevice } from '../../../../../service/modal-service';
   styleUrl: './start-content.scss'
 })
 export class StartContent {
+  language: any;
   appList: StartApp[] = WINDOWS_START_APPS;
   fileSelected: string | undefined;
   explorerOpt: { optName: string, appKey: string }[] = [
@@ -25,8 +27,13 @@ export class StartContent {
     { optName: 'Aiuto e supporto' },
   ]
 
-  constructor(private modalService: ModalSevice) { }
+  constructor(private modalService: ModalSevice, private langService: LanguageService) { }
 
+  ngOnInit() {
+    this.langService.language$.subscribe(() => {
+      this.language = this.langService.words;
+    });
+  }
 
   /* Recupera la view selezionata */
   contentSelected(app: StartApp) {
@@ -52,7 +59,7 @@ export class StartContent {
   /* Apre fileExp con appropriata view */
   openExplorer(opt: { optName: string, appKey: string }) {
     let isOpen = this.modalService.checkIsExplorerOpen();
-    
+
     if (!isOpen) {
       this.modalService.sendComponentFileExpData(opt);
     }

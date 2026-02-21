@@ -16,7 +16,7 @@
     <!-- Corpo modale -->
     <div class="flex justify-between rounded-t-md font-semibold w-full h-9" cdkDragHandle>
         <div class="flex items-center gap-2 p-t-1 p-2 p-b-1">
-            <img src="{{selectedApp?.appInfo?.image}}" alt="cmd" class="w-6 h-6">
+            <img src="{{selectedApp?.appInfo?.image}}" alt="{{ language.cmdAlt }}" class="w-6 h-6">
             <span class="text-sm [text-shadow:2px_2px_6px_white,0_0_10px_white]">
                 {{ selectedApp?.appInfo?.modalTitle ? selectedApp?.appInfo?.modalTitle : selectedApp?.appInfo?.name }}
             </span>
@@ -35,7 +35,7 @@
             </button>
             <!-- Chiudi -->
             <button class="relative z-10 flex items-center justify-center w-9 p-0 bg-gray-200 border-r rounded-b-lg windows_modal_header_close" (click)="closeModal()">
-                <span class="text-white">x</span>
+                <span class="text-white mb-1">x</span>
             </button>
         </div>
     </div>

@@ -4,14 +4,14 @@
 
         <!-- Top bar -->
         <div class="h-[2rem] border-y-2 flex gap-2 items-center file_exp_bar">
-            @for (item of ['File', 'Stampa', 'Email', 'Apri']; track $index) {
+            @for (item of [language.file, language.print, language.email, language.open]; track $index) {
             <span class="text-[0.75rem] ml-3 text-center">{{item}}</span>
             }
         </div>
 
         <!-- Image area (fills remaining space) -->
         <div class="flex-1 flex items-center justify-center bg-[#eef3fa] overflow-hidden">
-            <img [src]="fileToOpen" alt="Image Not Found" class="max-w-full max-h-full object-contain">
+            <img [src]="fileToOpen" alt="{{ language.imageNotFound }}" class="max-w-full max-h-full object-contain">
         </div>
     </div>
 </div>
