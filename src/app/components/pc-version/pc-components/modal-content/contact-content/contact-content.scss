@@ -1,0 +1,32 @@
+.file_exp_bar {
+    background: linear-gradient(#fff 20%, #f1f4fa 25%, #f1f4fa 43%, #d4dbee 48%, #e6eaf6);
+    border-color: rgba(0, 0, 0, 0.31);
+    color: rgba(0, 0, 0, 0.551);
+}
+
+.custom_border {
+    border: 1px solid rgba(0, 0, 0, 0.31);
+    border-radius: 0.1rem 0.1rem 0 0;
+
+
+    &.different_bot {
+        border: 1px solid rgba(0, 0, 0, 0.31);
+        border-bottom: 3px solid #0032a7;
+        border-radius: 0.5rem 0.5rem 0 0;
+    }
+}
+
+.custom_copy {
+    color: #575757;
+    text-decoration: none;
+
+    &:hover {
+        text-decoration: underline;
+        transform: translateY(-2px);
+
+    }
+}
+
+.custom_hover:hover {
+    transform: translateY(-5px);
+}
