@@ -25,7 +25,7 @@ export class WindowsBar {
     { linkName: 'Medium', linkImg: 'assets/icons/medium.svg', link: 'https://medium.com/@afischetti.work' },
   ];
   showHiddenLinks: boolean = false;
-  showLenguage: boolean = false;
+  showLanguage: boolean = false;
   languageSelected: string = 'ITA';
   otherLanguage: string = 'ENG';
   showStartMenu: boolean = false;
@@ -90,8 +90,8 @@ export class WindowsBar {
   }
 
   /* mostra lingue */
-  showLenguageOpt() {
-    this.showLenguage = !this.showLenguage
+  showLanguageOpt() {
+    this.showLanguage = !this.showLanguage
   }
 
   /* Seleziona lingue */
