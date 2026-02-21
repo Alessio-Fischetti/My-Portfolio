@@ -122,6 +122,11 @@
         "deploy": {
           "builder": "angular-cli-ghpages:deploy",
           "options": {
+            "outputPath": "dist/my-portfolio",
+            "browser": "src/main.ts",
+            "polyfills": [
+              "zone.js"
+            ],
             "baseHref": "/My-Portfolio/"
           }
         }
