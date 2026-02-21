@@ -21,6 +21,19 @@
             "polyfills": [
               "zone.js"
             ],
+            "allowedCommonJsDependencies": [
+              "prismjs",
+              "prismjs/components/prism-bash",
+              "prismjs/components/prism-typescript",
+              "prismjs/components/prism-javascript"
+            ],
+            "budgets": [
+              {
+                "type": "initial",
+                "maximumWarning": "2mb",
+                "maximumError": "5mb"
+              }
+            ],
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
