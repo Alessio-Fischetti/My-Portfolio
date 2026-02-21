@@ -76,7 +76,7 @@ export class LanguageService {
     language$ = this.languageSubject.asObservable();
 
     get words() {
-        return this.languageSubject.value === 'ENG' ? ENG_WORDS : ITA_WORDS;
+        return this.languageSubject.value === 'ITA' ? ITA_WORDS : ITA_WORDS;
     }
 
     setLanguage(lang: 'ITA' | 'ENG') {
