@@ -2,11 +2,14 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ModalSevice } from '../../../../../service/modal-service';
+import { MarkdownModule } from 'ngx-markdown';
+
 
 @Component({
   selector: 'app-vscode-content',
-  imports: [CommonModule],
+  imports: [CommonModule, MarkdownModule],
   templateUrl: './vscode-content.html',
+  standalone: true,
   styleUrl: './vscode-content.scss'
 })
 export class VscodeContent {
@@ -17,7 +20,7 @@ export class VscodeContent {
   listaProgetti: { nomeProgetto: string, readMe: string, selectedProject: boolean }[] = [
     {
       nomeProgetto: 'AI Implementation',
-      readMe: 'AI SPACCA FRA',
+      readMe: 'assets/projects-readme/AI_Implementation.md',
       selectedProject: false,
     },
     {
