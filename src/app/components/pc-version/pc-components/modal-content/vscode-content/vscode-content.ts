@@ -3,6 +3,8 @@ import { Component } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ModalSevice } from '../../../../../service/modal-service';
 import { MarkdownModule } from 'ngx-markdown';
+import { Projects } from '../../../../interfaces/vscode-interface';
+import { VSCODE_LISTA_PROGETTI } from '../../../../../mocks/vscode.mock';
 
 
 @Component({
@@ -17,19 +19,8 @@ export class VscodeContent {
   componentSub!: Subscription;
   fileToOpen!: string;
   rotateListArrow: boolean = true;
-  listaProgetti: { nomeProgetto: string, readMe: string, selectedProject: boolean }[] = [
-    {
-      nomeProgetto: 'AI Implementation',
-      readMe: 'assets/projects-readme/AI_Implementation.md',
-      selectedProject: false,
-    },
-    {
-      nomeProgetto: 'Gestionale x',
-      readMe: 'BASIC SHIT',
-      selectedProject: false,
-    },
-  ];
-  listOpenedProjects: { nomeProgetto: string, readMe: string, selectedProject: boolean }[] = [];
+  listaProgetti: Projects[] = VSCODE_LISTA_PROGETTI;
+  listOpenedProjects: Projects[] = [];
   selectedWindow!: string;
 
   constructor(private modalService: ModalSevice) { }
@@ -42,22 +33,29 @@ export class VscodeContent {
       });
   }
 
-  selectedProject(project: { nomeProgetto: string, readMe: string, selectedProject: boolean }) {
+  /* Seleziona progetto e apre finestra */
+  selectedProject(project: { nomeProgetto: string, readMe: string, selectedProject: boolean, linkProject: string }) {
     this.listaProgetti.forEach(p => p.selectedProject = false);
     project.selectedProject = true;
 
-    // evita duplicati nella lista delle finestre aperte
     const exists = this.listOpenedProjects.find(p => p.nomeProgetto === project.nomeProgetto);
     if (!exists) {
       this.listOpenedProjects.push(project);
       this.selectedProjectWindow(project);
+    } else {
+      project.selectedProject = true;
+      this.selectedWindow = project.nomeProgetto;
     }
   }
 
+  /* Selezione da finestra */
   selectedProjectWindow(project: { nomeProgetto: string, readMe: string, selectedProject: boolean }) {
     this.selectedWindow = project.nomeProgetto;
+    this.listaProgetti.forEach(p => p.selectedProject = false);
+    project.selectedProject = true;
   }
 
+  /* Chiude finestra */
   closeWindow(project: { nomeProgetto: string, readMe: string, selectedProject: boolean }) {
     project.selectedProject = false;
     this.listOpenedProjects = this.listOpenedProjects.filter(p => p.nomeProgetto !== project.nomeProgetto);

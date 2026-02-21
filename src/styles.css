@@ -11,5 +11,10 @@ body {
 }
 
 pre[class*="language-"] {
-border-radius: 10px;
+  border-radius: 10px;
+}
+
+markdown ul {
+  list-style: disc;
+  padding-left: 20px;
 }

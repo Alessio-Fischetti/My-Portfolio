@@ -1,3 +1,19 @@
+div {
+    font-family:
+        "Cascadia Code",
+        Consolas,
+        "Courier New",
+        monospace;
+}
+
+.arrow_holder {
+    cursor: pointer;
+
+    &:hover {
+        background: #dedede5c;
+    }
+}
+
 .list_arrow .list_arrow_button {
     color: #dedede;
     margin-top: 6px;
@@ -14,6 +30,11 @@
     }
 }
 
-.focused{
+.focused {
     background: #6c6c6c9c
+}
+
+.custom_anchor {
+    text-decoration: none;
+    color: #0f0f0f;
 }

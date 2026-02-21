@@ -30,23 +30,25 @@
 
             <!-- Editor and list projects -->
             <div class="flex-1 min-w-[180px] overflow-auto">
-                <div class="flex gap-1 p-2 items-center">
-                    <button class="h-fit" [ngClass]="{'rotate-270': rotateListArrow}"
-                        (click)="rotateListArrow = !rotateListArrow">
+                <div class="flex gap-1 p-2 items-center arrow_holder"
+                    (click)="rotateListArrow = !rotateListArrow">
+                    <button class="h-fit" [ngClass]="{'rotate-270': rotateListArrow}">
                         <img src="assets/icons/arrow.png" class="w-5 h-5">
                     </button>
                     <span class="text-sm text-[#dedede]">Progetti</span>
                 </div>
                 @for (project of listaProgetti; track $index) {
-                <li class="flex gap-1 items-center justify-center">
-                    <button
-                        class="w-[80%] py-1 px-3 hover:bg-[#dedede5c] hover:cursor-pointer hover:shadow-md rounded text-left"
-                        [ngClass]="{'focused': project.selectedProject}" (click)="selectedProject(project)">
+                @if (!rotateListArrow) {
+                <li class="flex gap-1 items-center justify-center  hover:bg-[#dedede5c]"
+                    [ngClass]="{'focused': project.selectedProject}">
+                    <button class="w-[80%] py-1 px-3 hover:cursor-pointer hover:shadow-md rounded text-left"
+                        (click)="selectedProject(project)">
 
                         <span class="text-sm text-[#dedede] truncate">{{ project.nomeProgetto }}</span>
 
                     </button>
                 </li>
+                }
                 }
             </div>
         </div>
@@ -83,9 +85,15 @@
                 @for (item of listOpenedProjects; track $index) {
                 @if (item.nomeProgetto === selectedWindow) {
                 <!--  <span class="text-white">{{item.readMe}}</span> -->
-                <div>
-                    <markdown [src]="item.readMe" class="text-[#dedede]"></markdown>
+                <div class="flex justify-end">
+                    <a [href]="item.linkProject" target="_blank" rel="noopener noreferrer" class="flex gap-1 items-center p-2 bg-[#dedede] rounded text-inherit
+                        hover:translate-y-[2px] custom_anchor">
+                        <img src="assets/icons/github.svg" alt="" class="w-5 h-5">
+                        <span class="text-sm">Open in Github</span>
+                    </a>
                 </div>
+
+                <markdown [src]="item.readMe" class="text-[#dedede]"></markdown>
                 }
                 }
             </div>
