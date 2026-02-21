@@ -1,9 +1,9 @@
 <div class="h-full bg-[#0f0f0f] flex flex-col">
 
-    <div class="h-[2.5rem] w-full flex items-center gap-2 border-b border-[#464646] overflow-hidden">
+    <div class="h-[2.5rem] w-full py-[3px] flex items-center gap-2 border-b border-[#464646] overflow-hidden">
         @for (item of ['File','Edit','Selection','View','Go','Run','Terminal','Help']; track $index) {
-        <span class="flex-shrink-0 text-[14px] px-[6px] text-[#dedede] 
-                 rounded hover:bg-[#6c6c6c9c] whitespace-nowrap">
+        <span class="h-full flex items-center flex-shrink-0 text-[14px] px-[6px] text-[#dedede] 
+                  hover:bg-[#6c6c6c9c] whitespace-nowrap hover:underline rounded-[1px]">
             {{item}}
         </span>
         }
@@ -21,7 +21,7 @@
                 </div>
                 @for (item of ['assets/icons/search.png', 'assets/icons/git.png', 'assets/icons/debug.png']; track
                 $index) {
-                <div class="w-full flex gap-1 items-center">
+                <div class="w-full flex gap-1 items-center custom_border_hover">
                     <div class="w-[2px] h-10"></div>
                     <img [src]="item" class="w-6 h-6">
                 </div>
@@ -30,8 +30,7 @@
 
             <!-- Editor and list projects -->
             <div class="flex-1 min-w-[180px] overflow-auto">
-                <div class="flex gap-1 p-2 items-center arrow_holder"
-                    (click)="rotateListArrow = !rotateListArrow">
+                <div class="flex gap-1 p-2 items-center arrow_holder" (click)="rotateListArrow = !rotateListArrow">
                     <button class="h-fit" [ngClass]="{'rotate-270': rotateListArrow}">
                         <img src="assets/icons/arrow.png" class="w-5 h-5">
                     </button>
@@ -84,7 +83,6 @@
             <div class="flex-1 overflow-auto p-4">
                 @for (item of listOpenedProjects; track $index) {
                 @if (item.nomeProgetto === selectedWindow) {
-                <!--  <span class="text-white">{{item.readMe}}</span> -->
                 <div class="flex justify-end">
                     <a [href]="item.linkProject" target="_blank" rel="noopener noreferrer" class="flex gap-1 items-center p-2 bg-[#dedede] rounded text-inherit
                         hover:translate-y-[2px] custom_anchor">

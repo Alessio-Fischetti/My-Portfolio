@@ -20,3 +20,10 @@ export interface AppViews {
     isOptSeleted: boolean,
     img: string
 }
+
+export interface StartApp {
+    appName: string,
+    appImg: string,
+    fileType: string,
+    open: boolean
+}

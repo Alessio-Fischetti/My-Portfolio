@@ -70,7 +70,8 @@
                             <a [href]="link.actualLink" class="w-full text-inherit">
                                 <div class="w-full flex flex-row justify-between p-3 custom_border different_bot">
                                     <div class="flex flex-row gap-2 flex-wrap sm:flex-nowrap min-w-0 justify-center">
-                                        <img [src]="link.icon" alt="" class="w-8 h-8 self-center">
+                                        <img [src]="link.icon" alt=""
+                                            class="w-8 h-8 self-center flex-shrink-0 object-contain" />
                                         <div class="flex flex-col min-w-0">
                                             <span class="truncate text-[0.8rem] text-[#0032a7] font-semibold">
                                                 {{link.linkType}}

@@ -4,9 +4,21 @@
            opacity-95
            ">
     <!-- Start -->
-    <div class="w-10 h-10 flex items-center justify-center rounded-full
-               hover:brightness-150 transition">
-        <img src="assets/icons/Start.svg" alt="" class="w-30 h-30">
+    <div class="relative">
+
+        <!-- Start Menu -->
+        @if (showStartMenu) {
+        <div class="absolute bottom-12 left-0 w-[18rem] sm:w-[22rem] h-[400px]
+            py-1 pl-1 pr-0 shadow-lg rounded-lg z-50 custom_border window_bar no_see custom_start">
+            <start-content></start-content>
+        </div>
+        }
+
+        <div class="w-10 h-10 flex items-center justify-center rounded-full
+                hover:brightness-150 transition duration-200 cursor-pointer"
+            [ngClass]="{ 'brightness-150': showStartMenu }" (click)="openStart()">
+            <img src="assets/icons/Start.svg" alt="" class="w-30 h-30">
+        </div>
     </div>
 
     <!-- Separator -->
@@ -56,45 +68,68 @@
         <img [src]="newApp['appInfo'].image" class="w-7 h-7">
 
         <!-- Open indicator -->
-        <div *ngIf="newApp['onBackground'] || newApp['isOpen']" class="absolute bottom-1 w-6 h-[2px] bg-[#7fbfff] rounded">
+        <div *ngIf="newApp['onBackground'] || newApp['isOpen']"
+            class="absolute bottom-1 w-6 h-[2px] bg-[#7fbfff] rounded">
         </div>
 
     </div>
     }
 
-    <div class="h-100 ml-auto flex items-center">
+    <div class="h-100 ml-auto flex items-center relative">
 
         <!-- Links -->
         <!-- Freccia per vedere link Nascosti -->
         @if (hiddenLinks.length > 0) {
-        <div class="w-8 h-8 flex items-center justify-center cursor-pointer hover:bg-white/10 rounded"
-            (click)="toggleHiddenLinks()">
+        <div class="relative">
+            <div class="w-8 h-8 flex items-center justify-center cursor-pointer hover:bg-white/10 rounded"
+                (click)="toggleHiddenLinks()">
+                <span class="text-white text-sm"><img src="assets/icons/arrow.png" alt="▼"
+                        class="w-5 h-5 custom_arrow"></span>
+            </div>
 
-            <span class="text-white text-sm">▲</span>
-        </div>
+            @if (showHiddenLinks) {
+            <div class="absolute bottom-full right-0 mb-3 translate-x-[1.2rem]
+                        p-3 rounded shadow-xl
+                        flex flex-col gap-3 window_bar">
 
-        <!-- Pannello link nascosti -->
-        @if (showHiddenLinks) {
-        <div class="absolute bottom-14 right-0 
-                  bg-[#1f1f1f] p-3 rounded shadow-xl
-                  flex flex-col gap-3">
+                @for (links of hiddenLinks; track $index) {
+                <div class="w-10 h-10 flex justify-center items-center task_item">
+                    <a [href]="links.link" target="_blank">
+                        <img [src]="links.linkImg" [alt]="links.linkName" class="w-5 h-5">
+                    </a>
+                </div>
+                }
 
-            @for (links of hiddenLinks; track $index) {
-            <div class="w-10 h-10 flex justify-center items-center task_item">
-                <img [src]="links.linkImg" [alt]="links.linkName" class="w-5 h-5">
             </div>
             }
-
-        </div>
-        }
-        }
-
+        </div> }
         <!-- Link Visibili -->
         @for (links of visibleLinks; track $index) {
         <div class="w-10 h-10 flex justify-center items-center task_item">
-            <img [src]="links.linkImg" [alt]="links.linkName" class="w-5 h-5">
+            <a [href]="links.link" target="_blank">
+                <img [src]="links.linkImg" [alt]="links.linkName" class="w-5 h-5">
+            </a>
         </div>
         }
+
+        <!-- Lenguage -->
+        @if (showLenguage) {
+        <div class="absolute bottom-full right-0 translate-x-[-4.1rem]
+            mb-1 p-2 rounded shadow-xl flex flex-col gap-3 window_bar z-50">
+
+            <div class="w-10 h-10 flex justify-center items-center task_item cursor-pointer"
+                (click)="selectLeanguage()">
+                <span>{{otherLeanguage}}</span>
+            </div>
+        </div>
+        }
+        <!-- Link Visibili -->
+        <div class="w-10 h-10 flex justify-center items-center task_item">
+            <button (click)="showLenguageOpt()">
+                <span class="text-shadow-sm">{{leanguageSelected}}</span>
+            </button>
+        </div>
+
 
         <!-- Time -->
         <div class="w-fit h-100 flex flex-col justify-center items-center p-0 task_item">

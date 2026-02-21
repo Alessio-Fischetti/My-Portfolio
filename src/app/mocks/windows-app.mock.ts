@@ -1,5 +1,5 @@
 import { WindowsApps } from "../components/interfaces/modal-interface";
-import { Folder, AppViews } from "../components/interfaces/app-interface";
+import { Folder, AppViews, StartApp } from "../components/interfaces/app-interface";
 import { CmdContent } from "../components/pc-version/pc-components/modal-content/cmd-content/cmd-content";
 import { CvContent } from "../components/pc-version/pc-components/modal-content/cv-content/cv-content";
 import { FileExplorerContent } from "../components/pc-version/pc-components/modal-content/file-explorer-content/file-explorer-content";
@@ -167,13 +167,15 @@ export const WINDOWS_APPS_CONTENT: Folder[] = [
                 appName: 'Contattami',
                 appImg: 'assets/icons/contact.png',
                 referenceFolder: 'Desktop',
-                fileType: "contact_me"
+                fileType: "contact_me",
+                component: ContactContent
             },
             {
                 appName: 'About me.png',
                 appImg: 'assets/imgs/me.webp',
                 referenceFolder: 'Desktop',
-                fileType: "images"
+                fileType: "images",
+                component: ImageContent
             },
 
         ]
@@ -238,6 +240,51 @@ export const WINDOWS_APPS_CONTENT: Folder[] = [
             },
         ]
     }
+]
+
+export const WINDOWS_START_APPS: StartApp[] = [
+    {
+        appName: 'Command Prompt',
+        appImg: 'assets/icons/cmd.webp',
+        fileType: "cmd",
+        open: true
+    },
+    {
+        appName: 'File Explorer',
+        appImg: 'assets/icons/File_Explorer.svg',
+        fileType: "file_explorer",
+        open: false
+    },
+    {
+        appName: 'About me.pdf',
+        appImg: 'assets/icons/pdf.svg',
+        fileType: 'about_me',
+        open: false
+    },
+    {
+        appName: 'CV Alessio Fischetti.pdf',
+        appImg: 'assets/icons/cv.png',
+        fileType: "cv",
+        open: false
+    },
+    {
+        appName: 'Progetti',
+        appImg: 'assets/icons/vscode.svg',
+        fileType: "vscode",
+        open: false
+    },
+    {
+        appName: 'Contattami',
+        appImg: 'assets/icons/contact.png',
+        fileType: "contact_me",
+        open: false
+    },
+    {
+        appName: 'About me.png',
+        appImg: 'assets/imgs/me.webp',
+        fileType: "images",
+        open: false
+    },
 ]
 
 export const WINDOWS_APP_VIEWS: AppViews[] = [

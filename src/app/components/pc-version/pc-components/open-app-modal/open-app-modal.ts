@@ -2,6 +2,9 @@ import { Component, ElementRef, EventEmitter, HostListener, Input, Output, Type 
 import { CdkDrag, CdkDragEnd, CdkDragHandle } from '@angular/cdk/drag-drop';
 import { CommonModule } from '@angular/common';
 import { WindowState } from '../../../interfaces/modal-interface';
+import { StartApp } from '../../../interfaces/app-interface';
+import { WINDOWS_START_APPS } from '../../../../mocks/windows-app.mock';
+import { ModalSevice } from '../../../../service/modal-service';
 
 @Component({
   selector: 'open-app-modal',
@@ -17,8 +20,9 @@ export class OpenAppModal {
   @Output() saveDragPosition = new EventEmitter<{ appKey?: string; appId?: number; dragPosition?: { x: number, y: number } }>();
 
   dragPosition!: { x: number, y: number }
+  startApps: StartApp[] = WINDOWS_START_APPS
 
-  constructor(private elementRef: ElementRef) { }
+  constructor(private elementRef: ElementRef, private modalService: ModalSevice) { }
 
   @HostListener('document:click', ['$event'])
   onClick(event: MouseEvent) {
@@ -80,6 +84,16 @@ export class OpenAppModal {
 
   /* Chiude modale */
   closeModal() {
+    /* Chiusra per start */
+    const file = this.startApps.find(
+      app => app.fileType === this.selectedApp!.appInfo.name
+    );
+
+    if (file) {
+      file.open = false;
+      file.fileType === 'file_explorer' ? this.modalService.updateIsExplorerOpen(false) : null
+    }
+
     this.app.emit({ appKey: this.appKey, appId: this.selectedApp?.id })
   }
 }

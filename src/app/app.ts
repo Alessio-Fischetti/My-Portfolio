@@ -8,6 +8,5 @@ import { Home } from "./components/home/home-component";
   styleUrl: './app.scss'
 })
 export class App {
-  protected readonly title = signal('my-portfolio');
-  
+  protected readonly title = signal('software-developer-portfolio');
 }

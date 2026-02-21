@@ -38,3 +38,13 @@ div {
     text-decoration: none;
     color: #0f0f0f;
 }
+
+.custom_border_hover {
+
+    &:hover {
+
+        div:first-child {
+            background-color: #1456d97e;
+        }
+    }
+}

@@ -8,7 +8,6 @@
 
 .task_item:hover {
     border-left: 2px solid;
-    /* serve per far partire border-image */
     border-right: 2px solid;
     border-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0)) 1 100%;
     border-image-slice: 1;
@@ -17,5 +16,13 @@
 .window_bar {
     background: linear-gradient(to right, rgba(0, 0, 0, 0.1333333333) 50px, transparent 80px),
         linear-gradient(to left, rgba(0, 0, 0, 0.1333333333) 200px, transparent 230px),
-       #a8c0da
+        #a8c0da;
+}
+
+.custom_arrow {
+    transform: rotate(180deg);
+}
+
+.custom_border {
+    border: 1px solid rgba(0, 0, 0, 0.74);
 }

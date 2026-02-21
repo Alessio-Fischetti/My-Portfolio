@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { WINDOWS_APP_VIEWS, WINDOWS_APPS_CONTENT } from '../../../../../mocks/windows-app.mock';
 import { ModalSevice } from '../../../../../service/modal-service';
 import { AppViews, Folder, AppItem } from '../../../../interfaces/app-interface';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -13,18 +14,28 @@ import { AppViews, Folder, AppItem } from '../../../../interfaces/app-interface'
 })
 export class FileExplorerContent {
   /* Variables */
-  folderSelected: string = 'Desktop'
+  folderSelected!: string
   listOfPossibleViews: AppViews[] = WINDOWS_APP_VIEWS;
   showSizeOpt: boolean = false;
   showArrow: boolean = false;
   rotateListArrow: boolean = false;
   listApps: Folder[] = WINDOWS_APPS_CONTENT;
   fileSelected: string | undefined;
+  componentSub!: Subscription;
 
   constructor(private modalService: ModalSevice) { }
 
-
   ngOnInit() {
+    this.componentSub = this.modalService.componentFileExpData$
+      .subscribe(value => {
+        if (!value) return;
+        this.selectFolder(undefined, value)
+      });
+
+    if (this.folderSelected === undefined) {
+      this.folderSelected = 'Desktop'
+    }
+
     if (sessionStorage.getItem('explorerViewSelected')) {
       this.selectView(sessionStorage.getItem('explorerViewSelected')!)
     }
@@ -67,8 +78,16 @@ export class FileExplorerContent {
   }
 
   /* Seleziona la folder */
-  selectFolder(selectedFolder: Folder) {
-    this.listApps.forEach(folder => folder.isFolderSelected = folder === selectedFolder);
-    this.folderSelected = selectedFolder.folderName;
+  selectFolder(selectedFolder?: Folder, openByOutside?: { optName: string, appKey: string }) {
+
+    if (selectedFolder) {
+      this.listApps.forEach(folder => folder.isFolderSelected = folder === selectedFolder);
+      this.folderSelected = selectedFolder.folderName;
+
+    } else if (openByOutside) {
+      this.listApps.forEach(folder => folder.isFolderSelected = folder.folderName === openByOutside.optName);
+      this.folderSelected = openByOutside.optName
+    }
+
   }
 }

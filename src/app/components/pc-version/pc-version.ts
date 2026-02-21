@@ -6,6 +6,7 @@ import { WindowsApps, WindowState } from '../interfaces/modal-interface';
 import { WINDOWS_APPS_CONTENT, WINDOWS_APPS_MOCK } from '../../mocks/windows-app.mock';
 import { AppItem, Folder } from '../interfaces/app-interface';
 import { ModalSevice } from '../../service/modal-service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-pc-version',
@@ -14,7 +15,6 @@ import { ModalSevice } from '../../service/modal-service';
   styleUrl: './pc-version.scss'
 })
 export class PcVersion {
-
   /* Variables */
   windowsApps: WindowsApps = WINDOWS_APPS_MOCK;
   openedWindows: { appName: string, appId: number }[] = [
@@ -23,9 +23,19 @@ export class PcVersion {
   highestZIndex = 1
   listApps: Folder[] = WINDOWS_APPS_CONTENT;
   fileSelected: string | undefined;
-  newApps: any[] = []
+  newApps: any[] = [];
+  componentSub!: Subscription;
+
 
   constructor(private modalService: ModalSevice) { }
+
+  ngOnInit() {
+    this.componentSub = this.modalService.componentFileExpData$
+      .subscribe(value => {
+        if (!value) return;
+        this.selectWindow(value.appKey)
+      });
+  }
 
   /* Recupera la view selezionata */
   contentSelected(fileRequested: string) {
@@ -127,7 +137,7 @@ export class PcVersion {
 
   /* Gestione minimizzazione */
   minimizeSelectedWindow(app: WindowState, appKey: string) {
-    
+
     if (!app.maximazed) {
       app.lastDragPosition = app.dragPosition
     }

@@ -2,7 +2,7 @@ import { Injectable, Type } from '@angular/core';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { WindowsApps, WindowState } from '../components/interfaces/modal-interface';
 import { WINDOWS_APPS_MOCK } from '../mocks/windows-app.mock';
-import { AppItem } from '../components/interfaces/app-interface';
+import { AppItem, StartApp } from '../components/interfaces/app-interface';
 
 @Injectable({ providedIn: 'root' })
 export class ModalSevice {
@@ -11,7 +11,7 @@ export class ModalSevice {
     modalData$ = this.modalComponent.asObservable();
     private windowsApps: WindowsApps = WINDOWS_APPS_MOCK;
 
-    sendModalData(value: AppItem) {
+    sendModalData(value: AppItem | StartApp) {
         const app = this.windowsApps[value.fileType];
         if (app) {
             this.modalComponent.next(app);
@@ -30,7 +30,7 @@ export class ModalSevice {
     componentImageData$ = this.componentImageDetails.asObservable();
 
     /* Cv */
-    sendComponentCvData(value: AppItem) {
+    sendComponentCvData(value: AppItem | StartApp) {
         const app = { name: this.windowsApps[value.fileType].appInfo.name, file: this.windowsApps[value.fileType].appInfo.file, maximized: this.windowsApps[value.fileType].maximazed };
 
         if (app) {
@@ -39,7 +39,7 @@ export class ModalSevice {
     }
 
     /* About Me */
-    sendComponentAboutMeData(value: AppItem) {
+    sendComponentAboutMeData(value: AppItem | StartApp) {
         const app = { name: this.windowsApps[value.fileType].appInfo.name, file: this.windowsApps[value.fileType].appInfo.file, maximized: this.windowsApps[value.fileType].maximazed };
 
         if (app) {
@@ -48,11 +48,31 @@ export class ModalSevice {
     }
 
     /* Image */
-    sendComponentImage(value: AppItem) {
+    sendComponentImage(value: AppItem | StartApp) {
         const app = { name: this.windowsApps[value.fileType].appInfo.name, file: this.windowsApps[value.fileType].appInfo.file, maximized: this.windowsApps[value.fileType].maximazed };
 
         if (app) {
             this.componentImageDetails.next(app);
         }
+    }
+
+    /* File Explorer custom */
+    private componentFileExp = new BehaviorSubject<{ optName: string, appKey: string } | null>(null);
+    componentFileExpData$ = this.componentFileExp.asObservable();
+    private isExplorerOpen = false;
+
+    sendComponentFileExpData(value: { optName: string, appKey: string }) {
+        if (value) {
+            this.componentFileExp.next(value);
+            this.isExplorerOpen = true
+        }
+    }
+
+    checkIsExplorerOpen() {
+        return this.isExplorerOpen;
+    }
+
+    updateIsExplorerOpen(opt: boolean) {
+        this.isExplorerOpen = false;
     }
 }
