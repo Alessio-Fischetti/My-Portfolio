@@ -9,12 +9,13 @@
         </div>
 
         <button class="download_button text-xs p-[.5px]" [ngClass]="{ 'disabled': downloading }"
-            (click)="downloadFile()" [disabled]="downloading">
+            (click)="downloadFile()" disabled> <!-- [disabled]="downloading" -->
             <span class="text-xs text-center"> {{ downloading ? language.downloading : language.download }}</span>
         </button>
     </div>
-    <div class="w-full h-full flex flex-row items-start">
-        <pdf-viewer #cvView [src]="fileToOpen.fileLink" [render-text]="true" [show-all]="true" class="w-full h-full">
-        </pdf-viewer>
+    <div class="w-full h-full flex flex-row items-start justify-center">
+    <!--     <pdf-viewer #cvView [src]="fileToOpen.fileLink" [render-text]="true" [show-all]="true" class="w-full h-full">
+        </pdf-viewer> -->
+         <span class="mt-5 text-[#656565d1] font-light">File in costruzione, verra' aggiunto a breve..</span>
     </div>
 </div>
