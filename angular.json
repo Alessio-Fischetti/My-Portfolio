@@ -123,7 +123,7 @@
         "deploy": {
           "builder": "angular-cli-ghpages:deploy",
           "options": {
-            "outputPath": "dist/my-portfolio",
+            "outputPath": "dist/my-portfolio/browser",
             "browser": "src/main.ts",
             "polyfills": [
               "zone.js"
